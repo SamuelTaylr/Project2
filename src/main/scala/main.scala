@@ -22,6 +22,7 @@ object main {
 
     println("Hello World")
     println("hello")
+    println("hi")
 
   }
 }
