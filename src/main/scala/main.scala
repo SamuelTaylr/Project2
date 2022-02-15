@@ -20,7 +20,11 @@ object main {
 
   def main(args: Array[String]): Unit = {
 
-    println("Hello World")
+    /*val menu = new menu
+    menu.selectionMenu(spark)*/
+
+    val sam = new sam
+    sam.loadDf(spark)
 
   }
 }
