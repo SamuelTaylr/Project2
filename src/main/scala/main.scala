@@ -24,7 +24,7 @@ object main {
     menu.selectionMenu(spark)*/
 
     val sam = new sam
-    sam.loadDf(spark)
+    sam.dataLoader(spark)
 
   }
 }
