@@ -25,6 +25,7 @@ object main {
     println("Hello World")
     println("This is a change ")
     val jake = new jake
+    jake.printName()
     jake.dataLoader(spark)
 
   }
