@@ -20,8 +20,11 @@ object main {
 
   def main(args: Array[String]): Unit = {
 
+    val sam = new sam
+    sam.dataLoader(spark)
     println("Hello World")
     println("This is a change ")
+
 
   }
 }
