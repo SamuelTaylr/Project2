@@ -22,18 +22,20 @@ class menu {
     selection match {
       case 1 => {
 
+
+        selectionMenu(spark)
       }
       case 2 => {
-
+        selectionMenu(spark)
       }
       case 3 => {
-
+        selectionMenu(spark)
       }
       case 4 => {
-
+        selectionMenu(spark)
       }
       case 5 => {
-        System.exit(0)
+        sys.exit(0)
       }
     }
   }
