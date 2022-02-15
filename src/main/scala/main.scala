@@ -24,7 +24,8 @@ object main {
     sam.dataLoader(spark)
     println("Hello World")
     println("This is a change ")
-
+    val jake = new jake
+    jake.dataLoader(spark)
 
   }
 }
