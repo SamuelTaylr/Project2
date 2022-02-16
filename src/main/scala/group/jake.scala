@@ -1,6 +1,6 @@
 package group
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 
 class jake {
@@ -11,7 +11,7 @@ class jake {
          |""".stripMargin + "+" + ("=" * 49) + "+")
   }
 
-  def dataLoader(spark: SparkSession): Unit = {
+  def dataLoader(spark: SparkSession): DataFrame = {
 
     import spark.implicits._
 
@@ -36,7 +36,7 @@ class jake {
     println(covidDF.dtypes.mkString("Array(", ", ", ")"))
 
     //Query 1 - Select * FROM covidDF WHERE Country = 'China' and Between date Jan to May
-
+    covidDF.select()
 
   }
 }
