@@ -23,34 +23,27 @@ class sam {
 
     import spark.implicits._
 
-    val preDf = spark.sparkContext.textFile("input/covid_19_data.csv")
-    val df = preDf.map(_.split(",")).map{case Array(a,b,c,d,e,f,g,h) => (a,b,c,d,e,f,g,h)}.toDF("Id",
-      "Obs_Date","State","Country","Update","Confirmed","Deaths","Recovered")
-
+    //Creating initial DataFrame from csv file
     val dfTest = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
       "input/covid_19_data.csv").toDF("Id", "Obs_Date","State","Country","Update","Confirmed",
       "Deaths","Recovered")
 
-    df.createOrReplaceTempView("Covid")
-    dfTest.createOrReplaceTempView("Covid2")
-    //val df2 = dfTest.withColumn("Obs_Date", df("Obs_Date").cast("Date"))
-
-    val sqlDf1 = spark.sql("select Obs_date from Covid2")
-    val newdf = sqlDf1.select(to_date(column("Obs_Date"),"yyyy-MM-DD").as("Date"))
-    //val df2 = sqlDf1.withColumn("Obs_Date", df("Obs_Date").cast("Date"))
+    //Changing data type of Obs_Date column to "DateType"
     val modifiedDF = dfTest.withColumn("Obs_Date", to_date($"Obs_Date", "MM/dd/yyyy"))
 
-    modifiedDF.createOrReplaceTempView("Covid3")
-    val sqlDf2 = spark.sql("select * from Covid3 where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ")
-    sqlDf2.show(300)
+    //Creating temporary view "Covid" from modifiedDF
+    modifiedDF.createOrReplaceTempView("Covid")
 
-    sqlDf1.show()
+    //Testing selecting between a date range, it works as intended
+    val sqlDf = spark.sql("select * from Covid where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ")
+    sqlDf.show(300)
+
     modifiedDF.show(10)
+
+    //Shows Data types of modifiedDF as an array
     println(modifiedDF.dtypes.mkString("Array(", ", ", ")"))
-    //println(df2.dtypes.mkString)
-    println(sqlDf1.dtypes.mkString("Array(", ", ", ")"))
-    println(dfTest.dtypes.mkString("Array(", ", ", ")"))
-    println(df.dtypes.mkString("Array(", ", ", ")"))
+
+
 
 
 
