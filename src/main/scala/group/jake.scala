@@ -11,7 +11,7 @@ class jake {
          |""".stripMargin + "+" + ("=" * 49) + "+")
   }
 
-  def dataLoader(spark: SparkSession): DataFrame = {
+  def dataLoader(spark: SparkSession): Unit = {
 
     import spark.implicits._
 
@@ -27,16 +27,29 @@ class jake {
     covidDF.createOrReplaceTempView("Covid")
 
     //Testing selecting between a date range, it works as intended
-    val sqlDf = spark.sql("select * from Covid where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ")
-    sqlDf.show(300)
+//    val sqlDf = spark.sql("select * from Covid where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ")
+//    sqlDf.show(300)
 
-    covidDF.show(10)
+//    covidDF.show(300)
 
     //Shows Data types of modifiedDF as an array
     println(covidDF.dtypes.mkString("Array(", ", ", ")"))
 
     //Query 1 - Select * FROM covidDF WHERE Country = 'China' and Between date Jan to May
-    covidDF.select()
+    println("+" + ("=" * 49) + "+" +
+      s"""\nDebug Query 1 start
+         |""".stripMargin + "+" + ("=" * 49) + "+")
+    covidDF.createTempView("covidDF")
+//    Mainland China
+    spark.sql("SELECT count(Obs_Date) FROM covidDF WHERE Obs_Date BETWEEN '2020-01-22' and '2020-06-31' and Country = 'Mainland China'").show()
+    spark.sql("SELECT * FROM covidDF WHERE Obs_Date BETWEEN '2020-01-22' and '2020-06-31' and Country = 'Mainland China'").show()
+//
+    spark.sql("SELECT count(Obs_Date) FROM covidDF WHERE Obs_Date BETWEEN '2020-03-22' and '2020-08-31' and Country = 'Mainland China'").show()
+    spark.sql("SELECT * FROM covidDF WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Vietnam'").show()
+
+    println("+" + ("=" * 49) + "+" +
+      s"""\nDebug Query 1 end
+         |""".stripMargin + "+" + ("=" * 49) + "+")
 
   }
 }
