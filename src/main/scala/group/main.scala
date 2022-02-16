@@ -1,10 +1,9 @@
-package group
-
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType}
 
 object main {
 
-  System.setProperty("hadoop.home.dir", "C:\\winutils")
+  System.setProperty("hadoop.home.dir", "C:\\hadoop\\")
 
   val spark = SparkSession
     .builder
@@ -13,19 +12,19 @@ object main {
     .enableHiveSupport()
     .getOrCreate()
   println("Spark Works Y'all")
+
+  import spark.implicits._
   spark.sparkContext.setLogLevel("ERROR")
+
 
 
   def main(args: Array[String]): Unit = {
 
-    /*val group.menu = new group.menu
-    group.menu.selectionMenu(spark)*/
+    val sam = new sam
+    sam.dataLoader(spark)
+    println("Hello World")
+    println("This is a change ")
 
-    /*val sam = new sam
-    sam.dataLoader(spark)*/
 
-    val covidDF = mark.dataLoader(spark)
-    covidDF.show()
-    mark.sparkQuery1(covidDF, spark)
   }
 }
