@@ -1,5 +1,6 @@
+package group
+
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 
 
 class sam {

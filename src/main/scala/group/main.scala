@@ -1,5 +1,6 @@
+package group
+
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType}
 
 object main {
 
@@ -14,20 +15,17 @@ object main {
 
 
   println("Spark Works Y'all")
-
-  import spark.implicits._
   spark.sparkContext.setLogLevel("ERROR")
-
 
 
   def main(args: Array[String]): Unit = {
 
-//    val sam = new sam
-//    sam.dataLoader(spark)
-//    println("Hello World")
-//    println("This is a change ")
+    //    val sam = new sam
+    //    sam.dataLoader(spark)
+    //    println("Hello World")
+    //    println("This is a change ")
 
-//    start test
+    //    start test
     val jake = new jake
     jake.printName()
     jake.dataLoader(spark)
