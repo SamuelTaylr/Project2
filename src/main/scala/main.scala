@@ -12,13 +12,7 @@ object main {
     .getOrCreate()
   spark.sparkContext.setLogLevel("ERROR")
 
-//  System.setProperty("hadoop.home.dir", "C:\\hadoop\\")
-//  val spark = SparkSession
-//    .builder
-//    .appName("hello hive")
-//    .config("spark.master", "local")
-//    .enableHiveSupport()
-//    .getOrCreate()
+
   println("Spark Works Y'all")
 
   import spark.implicits._
