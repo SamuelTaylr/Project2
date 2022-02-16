@@ -1,3 +1,5 @@
+package group
+
 import org.apache.spark.sql.SparkSession
 
 class menu {
@@ -8,7 +10,7 @@ class menu {
       """
         |************************
         |Enter a number to select
-        |a menu item.************
+        |a group.menu item.************
         |************************
         |1. Query 1 *************
         |2. Query 2 *************

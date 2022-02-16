@@ -1,20 +1,7 @@
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
-import org.apache.spark.sql.functions.{avg, column, count, expr, floor, max, min, sum, to_date, when}
+package group
 
-import java.sql.DriverManager
-import java.sql.Connection
-import java.sql.PreparedStatement
-import java.sql.SQLException
-import scala.io.StdIn.readLine
-import scala.io.Source
-import java.io.FileNotFoundException
-import java.security.MessageDigest
-import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
-import org.apache.avro.generic.GenericData.StringType
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.{Encoders, SparkSession}
-import org.apache.spark.sql.types.DataType
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions.to_date
 
 
 class sam {

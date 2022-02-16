@@ -1,5 +1,6 @@
+package group
+
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType}
 
 object main {
 
@@ -12,19 +13,19 @@ object main {
     .enableHiveSupport()
     .getOrCreate()
   println("Spark Works Y'all")
-
-  import spark.implicits._
   spark.sparkContext.setLogLevel("ERROR")
-
 
 
   def main(args: Array[String]): Unit = {
 
-    /*val menu = new menu
-    menu.selectionMenu(spark)*/
+    /*val group.menu = new group.menu
+    group.menu.selectionMenu(spark)*/
 
-    val sam = new sam
-    sam.dataLoader(spark)
+    /*val sam = new sam
+    sam.dataLoader(spark)*/
 
+    val covidDF = mark.dataLoader(spark)
+    covidDF.show()
+    mark.sparkQuery1(covidDF, spark)
   }
 }
