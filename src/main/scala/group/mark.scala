@@ -3,6 +3,7 @@ package group
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.to_date
 import scala.io.StdIn
+import java.sql.{Connection, DriverManager}
 
 object mark {
 
@@ -33,7 +34,7 @@ object mark {
   def userLogin(spark : SparkSession/*, table : String, Param1 : String, Param2 : String*/): Boolean = {
     val username = StdIn.readLine("Please enter your username: ").toUpperCase()
     val password = StdIn.readLine("Please enter your password: ").toUpperCase()
-
+    //val verifyLogin = statement.executeQuery("") if using jdbc connection --statement is placeholder for your connection
     val verifyLogin = spark.sql("select" +
       s"\n\tcase when count(username) >= 1 and count(password) >= 1 then" +
         "\n\t\ttrue" +
@@ -42,7 +43,7 @@ object mark {
       "\n\tend as boolAnswer" +
       s"\nfrom login" +
         s"\n\twhere upper(username)=upper($username) and upper(password)=upper($password);")
-
+    //jdbc version--> val verifyResult = verifyLogin.next()
     val verifyResult = verifyLogin.first().get(0)
     verifyResult.asInstanceOf[Boolean]
   }
