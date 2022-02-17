@@ -13,11 +13,6 @@ object main {
     .getOrCreate()
   spark.sparkContext.setLogLevel("ERROR")
 
-
-  println("Spark Works Y'all")
-  spark.sparkContext.setLogLevel("ERROR")
-
-
   def main(args: Array[String]): Unit = {
 
     //    val sam = new sam
@@ -29,6 +24,7 @@ object main {
     val jake = new jake
     jake.printName()
     jake.dataLoader(spark)
+
 
   }
 }
