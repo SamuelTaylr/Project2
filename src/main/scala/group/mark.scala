@@ -32,7 +32,7 @@ object mark {
    */
   def userLogin(spark : SparkSession/*, table : String, Param1 : String, Param2 : String*/): Boolean = {
     val username = StdIn.readLine("Please enter your username: ").toUpperCase()
-    val password = StdIn.readLine("Please enter your password").toUpperCase()
+    val password = StdIn.readLine("Please enter your password: ").toUpperCase()
 
     val verifyLogin = spark.sql("select" +
       s"\n\tcase when count(username) >= 1 and count(password) >= 1 then" +
