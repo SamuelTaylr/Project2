@@ -25,6 +25,7 @@ object main {
     jake.printName()
     jake.dataLoader(spark)
 
-
+    val dbGetConnection = new dbGetConnection
+    dbGetConnection.dbConnection()
   }
 }
