@@ -69,4 +69,12 @@ object mark {
       "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As May2021_Avg where Obs_Date Between '2021-05-01' and '2021-29-05')").show()
   }
 
+  def avgCasesByQuarter(inputDF : DataFrame, spark : SparkSession):Unit = {
+    inputDF.createOrReplaceTempView("AvgQuery")
+    spark.sql("(select round(avg(Confirmed), 2) from AvgQuery As Quarter1_Avg Where Obs_Date Between '2020-01-22' and '2020-03-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter2_Avg Where Obs_Date Between '2020-04-01' and '2020-06-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter3_Avg Where Obs_Date Between '2020-07-01' and '2020-09-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter4_Avg Where Obs_Date Between '2020-10-01' and '2020-12-31')").show()
+  }
+
 }
