@@ -3,8 +3,22 @@ package group
 import org.apache.spark.sql.SparkSession
 
 object main {
+//  Universal: Establish MySQL Connection
+  def mySQLConn: Unit = {
+    val dbGetConnection = new dbGetConnection
+    dbGetConnection.dbConnection()
+
+    println(
+      s"""DEBUG:
+         |If exit code 0 then this function worked
+         |""".stripMargin)
+
+  }
+
 
   System.setProperty("hadoop.home.dir", "C:\\winutils")
+  mySQLConn
+
   val spark = SparkSession
     .builder()
     .appName("Project2")
@@ -21,11 +35,10 @@ object main {
     //    println("This is a change ")
 
     //    start test
-    val jake = new jake
-    jake.printName()
-    jake.dataLoader(spark)
+//    val jake = new jake
+//    jake.printName()
+//    jake.dataLoader(spark)
 
-//    val dbGetConnection = new dbGetConnection
-//    dbGetConnection.dbConnection()
+
   }
 }

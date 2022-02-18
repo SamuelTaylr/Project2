@@ -12,7 +12,7 @@ class dbGetConnection {
     val con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
     try{
       Class.forName(driver)
-      val con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
+//      val con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
     } catch {
       case e: Exception =>
         e.printStackTrace()
