@@ -28,37 +28,107 @@ class sam {
 
     val test = spark.sql("select sum(confirmed) from Covid as feb where Obs_Date Between '2020-02-22' and '2020-03-10' and Country = 'US'  ")
 
-    val newDfUS = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date Between '2020-01-01' and " +
-      "'2020-01-31' and Country = 'US') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date Between " +
-      "'2020-02-01' and '2020-02-28' and Country = 'US') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
-      "as feb where Obs_Date Between '2020-03-01' and '2020-03-31' and Country = 'US') UNION ALL (select sum(confirmed) " +
-      "as Apr_Confirmed from Covid where Obs_Date Between '2020-04-01' and '2020-04-30' and Country = 'US') UNION ALL " +
-      "(select sum(confirmed) as May_Confirmed from Covid where Obs_Date Between '2020-05-01' and '2020-05-31' " +
-      "and Country = 'US') UNION ALL (select sum(confirmed) as Jun_Confirmed from Covid where Obs_Date Between " +
-      "'2020-06-01' and '2020-06-30' and Country = 'US') UNION ALL (select sum(confirmed) as Jul_Confirmed from Covid " +
-      "where Obs_Date Between '2020-07-01' and '2020-07-31' and Country = 'US')")
+    val newDfUS = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'US') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'US') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'US') UNION ALL (select sum(confirmed) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'US') UNION ALL " +
+      "(select sum(confirmed) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'US') UNION ALL (select sum(confirmed) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'US') UNION ALL (select sum(confirmed) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'US') UNION ALL (select sum(confirmed) as Aug_Confirmed from Covid " +
+      "where Obs_Date = '2020-08-31' and Country = 'US') UNION ALL (select sum(confirmed) as Sep_Confirmed from Covid " +
+      "where Obs_Date = '2020-09-30' and Country = 'US') UNION ALL (select sum(confirmed) as Oct_Confirmed from Covid " +
+      "where Obs_Date = '2020-10-31' and Country = 'US') UNION ALL (select sum(confirmed) as Nov_Confirmed from Covid " +
+      "where Obs_Date = '2020-11-30' and Country = 'US') UNION ALL (select sum(confirmed) as Dec_Confirmed from Covid " +
+      "where Obs_Date = '2020-12-31' and Country = 'US')").persist()
 
     newDfUS.select("*").show(100)
 
-    val newTest = spark.sql("select * from Covid order by Obs_date desc limit 1")
-    newTest.show()
+    val newDfIndia = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'India') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'India') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'India') UNION ALL (select sum(confirmed) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'India') UNION ALL " +
+      "(select sum(confirmed) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'India') UNION ALL (select sum(confirmed) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'India') UNION ALL (select sum(confirmed) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'India') UNION ALL (select sum(confirmed) as Aug_Confirmed " +
+      "from Covid where Obs_Date = '2020-08-31' and Country = 'India') UNION ALL (select sum(confirmed) as Sep_Confirmed " +
+      "from Covid where Obs_Date = '2020-09-30' and Country = 'India') UNION ALL (select sum(confirmed) as Oct_Confirmed " +
+      "from Covid where Obs_Date = '2020-10-31' and Country = 'India') UNION ALL (select sum(confirmed) as Nov_Confirmed " +
+      "from Covid where Obs_Date = '2020-11-30' and Country = 'India') UNION ALL (select sum(confirmed) as Dec_Confirmed " +
+      "from Covid where Obs_Date = '2020-12-31' and Country = 'India')").persist()
 
-    val newDfChina = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date Between '2020-01-01' and " +
-      "'2020-01-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date Between " +
-      "'2020-02-01' and '2020-02-28' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
-      "as feb where Obs_Date Between '2020-03-01' and '2020-03-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) " +
-      "as Apr_Confirmed from Covid where Obs_Date Between '2020-04-01' and '2020-04-30' and Country = 'Mainland China') UNION ALL " +
-      "(select sum(confirmed) as May_Confirmed from Covid where Obs_Date Between '2020-05-01' and '2020-05-31' " +
-      "and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Jun_Confirmed from Covid where Obs_Date Between " +
-      "'2020-06-01' and '2020-06-30' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Jul_Confirmed from Covid " +
-      "where Obs_Date Between '2020-07-01' and '2020-07-31' and Country = 'Mainland China')")
+    newDfIndia.select("*").show(100)
+
+    val newDfChina = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'Mainland China') UNION ALL " +
+      "(select sum(confirmed) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Aug_Confirmed " +
+      "from Covid where Obs_Date = '2020-08-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Sep_Confirmed " +
+      "from Covid where Obs_Date = '2020-09-30' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Oct_Confirmed " +
+      "from Covid where Obs_Date = '2020-10-31' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Nov_Confirmed " +
+      "from Covid where Obs_Date = '2020-11-30' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Dec_Confirmed " +
+      "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
 
     newDfChina.select("*").show(100)
 
-    covidDF.show(10)
+    val newDfUSDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'US') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'US') UNION ALL (select sum(deaths) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'US') UNION ALL (select sum(deaths) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'US') UNION ALL " +
+      "(select sum(deaths) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'US') UNION ALL (select sum(deaths) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'US') UNION ALL (select sum(deaths) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'US') UNION ALL (select sum(deaths) as Aug_Confirmed from Covid " +
+      "where Obs_Date = '2020-08-31' and Country = 'US') UNION ALL (select sum(deaths) as Sep_Confirmed from Covid " +
+      "where Obs_Date = '2020-09-30' and Country = 'US') UNION ALL (select sum(deaths) as Oct_Confirmed from Covid " +
+      "where Obs_Date = '2020-10-31' and Country = 'US') UNION ALL (select sum(deaths) as Nov_Confirmed from Covid " +
+      "where Obs_Date = '2020-11-30' and Country = 'US') UNION ALL (select sum(deaths) as Dec_Confirmed from Covid " +
+      "where Obs_Date = '2020-12-31' and Country = 'US')").persist()
 
-    //Shows Data types of modifiedDF as an array
-    println(covidDF.dtypes.mkString("Array(", ", ", ")"))
+    newDfUSDeath.select("*").show(100)
+
+    val newDfIndiaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'India') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'India') UNION ALL (select sum(deaths) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'India') UNION ALL (select sum(deaths) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'India') UNION ALL " +
+      "(select sum(deaths) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'India') UNION ALL (select sum(deaths) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'India') UNION ALL (select sum(deaths) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'India') UNION ALL (select sum(deaths) as Aug_Confirmed " +
+      "from Covid where Obs_Date = '2020-08-31' and Country = 'India') UNION ALL (select sum(deaths) as Sep_Confirmed " +
+      "from Covid where Obs_Date = '2020-09-30' and Country = 'India') UNION ALL (select sum(deaths) as Oct_Confirmed " +
+      "from Covid where Obs_Date = '2020-10-31' and Country = 'India') UNION ALL (select sum(deaths) as Nov_Confirmed " +
+      "from Covid where Obs_Date = '2020-11-30' and Country = 'India') UNION ALL (select sum(deaths) as Dec_Confirmed " +
+      "from Covid where Obs_Date = '2020-12-31' and Country = 'India')").persist()
+
+    newDfIndiaDeath.select("*").show(100)
+
+    val newDfChinaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
+      " and Country = 'Mainland China') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
+      "'2020-02-28' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Mar_Confirmed from Covid " +
+      "where Obs_Date = '2020-03-31' and Country = 'Mainland China') UNION ALL (select sum(deaths) " +
+      "as Apr_Confirmed from Covid where Obs_Date = '2020-04-30' and Country = 'Mainland China') UNION ALL " +
+      "(select sum(deaths) as May_Confirmed from Covid where Obs_Date = '2020-05-31' " +
+      "and Country = 'Mainland China') UNION ALL (select sum(deaths) as Jun_Confirmed from Covid where Obs_Date = " +
+      "'2020-06-30' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Jul_Confirmed from Covid " +
+      "where Obs_Date = '2020-07-31' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Aug_Confirmed " +
+      "from Covid where Obs_Date = '2020-08-31' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Sep_Confirmed " +
+      "from Covid where Obs_Date = '2020-09-30' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Oct_Confirmed " +
+      "from Covid where Obs_Date = '2020-10-31' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Nov_Confirmed " +
+      "from Covid where Obs_Date = '2020-11-30' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Dec_Confirmed " +
+      "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
+
+    newDfChinaDeath.select("*").show(100)
 
   }
 
