@@ -31,19 +31,19 @@ class jake {
     //Creating initial DataFrame from csv file
     val dfTest = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
       "input/covid_19_data.csv").toDF("Id", "Obs_Date","State","Country","Update","Confirmed",
-      "Deaths","Recovered")
+      "Deaths","Recovered").persist()
 
     //Changing data type of Obs_Date column to "DateType" -- This will be the main Data Frame that we draw our queries from
-    val covidDF = dfTest.withColumn("Obs_Date", to_date($"Obs_Date", "MM/dd/yyyy"))
+    val covidDF = dfTest.withColumn("Obs_Date", to_date($"Obs_Date", "MM/dd/yyyy")).persist()
 
     //Creating temporary view "Covid" from covidDF
     covidDF.createOrReplaceTempView("Covid")
 
     //Testing selecting between a date range, it works as intended
-//    val sqlDf = spark.sql("select * from Covid where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ")
+//    val sqlDf = spark.sql("select * from Covid where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US'   ").persist()
 //    sqlDf.show(300)
 
-//    covidDF.show(300)
+    covidDF.show(300)
 
     //Shows Data types of modifiedDF as an array
     println(covidDF.dtypes.mkString("Array(", ", ", ")"))
@@ -69,16 +69,16 @@ class jake {
        */
 //    new table with column months to join to query
 
-    val month_rdd = parallelize(Array("January","February", "March", "April", "June", "July", "August", "September", "October", "November", "December"))
-      month_rdd.collect
+//    val month_rdd = parallelize(Array("January","February", "March", "April", "June", "July", "August", "September", "October", "November", "December"))
+//      month_rdd.collect
 
 //    Attn needed: Returns months in []'s
-    val month_rdd2 = month_rdd.map(_.split(","))//.toDF()
+//    val month_rdd2 = month_rdd.map(_.split(","))//.toDF()
 //    month_rdd2.show()
 
 //    Attn needed: returns Task not serializable
-    val monthsOfYearDF = month_rdd2.map(attributes => monthsOfYear(attributes(0).trim)).toDF()
-    monthsOfYearDF.show()
+//    val monthsOfYearDF = month_rdd2.map(attributes => monthsOfYear(attributes(0).trim)).toDF()
+//    monthsOfYearDF.show()
 
 //    val newDFMonthsChina = spark.sql("(SELECT SUM(confirmed) AS Total_Confirmed from CovidDF WHERE Obs_Date BETWEEN '2020-01-01' and '2020-01-31' AND Country = 'Mainland China') " +
 //      "UNION ALL (SELECT SUM(confirmed) AS January from CovidDF WHERE Obs_Date BETWEEN '2020-02-01' and '2020-02-29' AND Country = 'Mainland China')")
