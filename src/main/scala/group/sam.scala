@@ -3,6 +3,22 @@ package group
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.plans.FullOuter
 import org.apache.spark.sql.functions.to_date
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
+import org.apache.spark.sql.functions.{avg, column, count, expr, floor, max, min, sum, to_date, when}
+import java.sql.DriverManager
+import java.sql.Connection
+import java.sql.PreparedStatement
+import java.sql.SQLException
+import scala.io.StdIn.readLine
+import scala.io.Source
+import java.io.FileNotFoundException
+import java.security.MessageDigest
+import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
+import org.apache.avro.generic.GenericData.StringType
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.{Encoders, SparkSession}
+import org.apache.spark.sql.types.DataType
 
 
 class sam {
@@ -21,12 +37,6 @@ class sam {
 
     //Creating temporary view "Covid" from modifiedDF
     covidDF.createOrReplaceTempView("Covid")
-
-    //Testing selecting between a date range, it works as intended
-    val sqlDf = spark.sql("select sum(confirmed) from Covid as jan where Obs_Date Between '2020-01-22' and '2020-02-10' and Country = 'US' ")
-    //sqlDf.show(300)
-
-    val test = spark.sql("select sum(confirmed) from Covid as feb where Obs_Date Between '2020-02-22' and '2020-03-10' and Country = 'US'  ")
 
     val newDfUS = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'US') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
