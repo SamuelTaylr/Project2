@@ -12,9 +12,7 @@ object main {
       s"""DEBUG:
          |If exit code 0 then this function worked
          |""".stripMargin)
-
   }
-
 
   System.setProperty("hadoop.home.dir", "C:\\winutils")
   mySQLConn
@@ -35,10 +33,8 @@ object main {
     //    println("This is a change ")
 
     //    start test
-//    val jake = new jake
-//    jake.printName()
-//    jake.dataLoader(spark)
-
-
+    val jake = new jake
+    jake.printName()
+    jake.dataLoader(spark)
   }
 }

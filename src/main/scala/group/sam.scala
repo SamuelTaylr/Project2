@@ -14,9 +14,5 @@ class sam {
       "Obs_Date","State","Country","Update","Confirmed","Deaths","Recovered")
 
     df.show(10)
-
-
-
   }
-
 }
