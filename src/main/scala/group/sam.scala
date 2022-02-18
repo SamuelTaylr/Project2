@@ -23,17 +23,11 @@ import org.apache.spark.sql.types.DataType
 
 class sam {
 
-  def dataLoader(spark: SparkSession): Unit = {
+  def dataLoader(spark: SparkSession, covidDF: DataFrame): Unit = {
 
     import spark.implicits._
 
-    //Creating initial DataFrame from csv file
-    val dfTest = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
-      "input/covid_19_data.csv").toDF("Id", "Obs_Date","State","Country","Update","Confirmed",
-      "Deaths","Recovered")
 
-    //Changing data type of Obs_Date column to "DateType"
-    val covidDF = dfTest.withColumn("Obs_Date", to_date($"Obs_Date", "MM/dd/yyyy"))
 
     //Creating temporary view "Covid" from modifiedDF
     covidDF.createOrReplaceTempView("Covid")

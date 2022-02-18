@@ -23,7 +23,7 @@ object main {
     menu.selectionMenu(spark)*/
 
     val sam = new sam
-    sam.dataLoader(spark)
+    sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
 
 
   }
