@@ -10,7 +10,7 @@ class menu {
       """
         |************************
         |Enter a number to select
-        |a group.menu item.************
+        |a group.menu item.******
         |************************
         |1. Query 1 *************
         |2. Query 2 *************

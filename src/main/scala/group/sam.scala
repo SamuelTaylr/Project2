@@ -47,7 +47,7 @@ class sam {
       "where Obs_Date = '2020-11-30' and Country = 'US') UNION ALL (select sum(confirmed) as Dec_Confirmed from Covid " +
       "where Obs_Date = '2020-12-31' and Country = 'US')").persist()
 
-    newDfUS.select("*").show(100)
+    newDfUS.select("*").persist().show(100)
 
     val newDfIndia = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'India') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -64,7 +64,7 @@ class sam {
       "from Covid where Obs_Date = '2020-11-30' and Country = 'India') UNION ALL (select sum(confirmed) as Dec_Confirmed " +
       "from Covid where Obs_Date = '2020-12-31' and Country = 'India')").persist()
 
-    newDfIndia.select("*").show(100)
+    newDfIndia.select("*").persist().show(100)
 
     val newDfChina = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -81,7 +81,7 @@ class sam {
       "from Covid where Obs_Date = '2020-11-30' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Dec_Confirmed " +
       "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
 
-    newDfChina.select("*").show(100)
+    newDfChina.select("*").persist().show(100)
 
     val newDfUSDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'US') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -98,7 +98,7 @@ class sam {
       "where Obs_Date = '2020-11-30' and Country = 'US') UNION ALL (select sum(deaths) as Dec_Confirmed from Covid " +
       "where Obs_Date = '2020-12-31' and Country = 'US')").persist()
 
-    newDfUSDeath.select("*").show(100)
+    newDfUSDeath.select("*").persist().show(100)
 
     val newDfIndiaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'India') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -115,7 +115,7 @@ class sam {
       "from Covid where Obs_Date = '2020-11-30' and Country = 'India') UNION ALL (select sum(deaths) as Dec_Confirmed " +
       "from Covid where Obs_Date = '2020-12-31' and Country = 'India')").persist()
 
-    newDfIndiaDeath.select("*").show(100)
+    newDfIndiaDeath.select("*").persist().show(100)
 
     val newDfChinaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'Mainland China') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -132,7 +132,7 @@ class sam {
       "from Covid where Obs_Date = '2020-11-30' and Country = 'Mainland China') UNION ALL (select sum(deaths) as Dec_Confirmed " +
       "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
 
-    newDfChinaDeath.select("*").show(100)
+    newDfChinaDeath.select("*").persist().show(100)
 
   }
 
