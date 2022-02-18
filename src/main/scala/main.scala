@@ -3,7 +3,9 @@ import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerT
 
 object main {
 
-  System.setProperty("hadoop.home.dir", "C:\\hadoop\\")
+  //System.setProperty("hadoop.home.dir", "C:\\hadoop\\")
+  System.setProperty("hadoop.home.dir", "C:\\winutils")
+
 
   val spark = SparkSession
     .builder

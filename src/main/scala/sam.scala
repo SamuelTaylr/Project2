@@ -15,8 +15,6 @@ import org.apache.avro.generic.GenericData.StringType
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{Encoders, SparkSession}
 import org.apache.spark.sql.types.DataType
-
-
 class sam {
 
   def dataLoader(spark: SparkSession): Unit = {
@@ -41,7 +39,7 @@ class sam {
     modifiedDF.show(10)
 
     //Shows Data types of modifiedDF as an array
-    println(modifiedDF.dtypes.mkString("Array(", ", ", ")"))
+    //println(modifiedDF.dtypes.mkString("Array(", ", ", ")"))
 
 
 
