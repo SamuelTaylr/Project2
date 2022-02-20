@@ -2,7 +2,7 @@ package group
 
 import group.main.spark
 import org.apache.spark.sql.SQLImplicits
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.functions._
 
 class jake {
@@ -46,6 +46,7 @@ class jake {
 
     //Shows Data types of modifiedDF as an array
 //    println(covidDF.dtypes.mkString("Array(", ", ", ")"))
+
   }
 
   def query1(spark: SparkSession): Unit = {
@@ -105,6 +106,8 @@ class jake {
       s"""\nDebug Query 1 end\n
          |""".stripMargin + "+" + ("=" * 49) + "+")
 
+
+
   }
 
   def query2(spark: SparkSession): Unit ={
@@ -113,9 +116,53 @@ class jake {
  * NOTE: need to find a way to add february numbers to display beside january
  */
 
-    val newDFMonthsChina = spark.sql("(SELECT SUM(confirmed) AS Total_Confirmed from Covid WHERE Obs_Date BETWEEN '2020-01-01' and '2020-01-31' AND Country = 'Mainland China') " +
-      "UNION ALL (SELECT SUM(confirmed) AS January from Covid WHERE Obs_Date BETWEEN '2020-02-01' and '2020-02-29' AND Country = 'Mainland China')")
-    newDFMonthsChina.show()
+    val tsvWithHeaderOptions: Map[String, String] = Map(
+      //      ("delimiter", "\t"), // Uses "\t" delimiter instead of default ","
+      ("header", "true"))
+
+    val chinaQuery = {
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'")
+    }
+
+    val vietQuery = {
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Vietnam'")
+    }
+
+    val taiQuery = {
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Taiwan'")
+    }
+
+    val indiaQuery = {
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'India'")
+    }
+
+//    val newDFMonthsChina = spark.sql("(SELECT SUM(confirmed) AS Total_Confirmed from Covid WHERE Obs_Date BETWEEN '2020-01-01' and '2020-01-31' AND Country = 'Mainland China') " +
+//      "UNION ALL (SELECT SUM(confirmed) AS January from Covid WHERE Obs_Date BETWEEN '2020-02-01' and '2020-02-29' AND Country = 'Mainland China')")
+//    newDFMonthsChina.show()
+
+    chinaQuery.coalesce(1)         // Writes to a single file
+      .write
+      .mode(SaveMode.Overwrite)
+      .options(tsvWithHeaderOptions)
+      .csv("output/china6mo")
+
+    vietQuery.coalesce(1)         // Writes to a single file
+      .write
+      .mode(SaveMode.Overwrite)
+      .options(tsvWithHeaderOptions)
+      .csv("output/vietnam6mo")
+
+    taiQuery.coalesce(1)         // Writes to a single file
+      .write
+      .mode(SaveMode.Overwrite)
+      .options(tsvWithHeaderOptions)
+      .csv("output/taiwan6mo")
+
+    indiaQuery.coalesce(1)         // Writes to a single file
+      .write
+      .mode(SaveMode.Overwrite)
+      .options(tsvWithHeaderOptions)
+      .csv("output/india6mo")
   }
 
 }
