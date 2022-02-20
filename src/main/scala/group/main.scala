@@ -7,11 +7,6 @@ object main {
   def mySQLConn: Unit = {
     val dbGetConnection = new dbGetConnection
     dbGetConnection.dbConnection()
-
-    println(
-      s"""DEBUG:
-         |If exit code 0 then this function worked
-         |""".stripMargin)
   }
 
   System.setProperty("hadoop.home.dir", "C:\\winutils")
@@ -27,14 +22,11 @@ object main {
 
   def main(args: Array[String]): Unit = {
 
-    //    val sam = new sam
-    //    sam.dataLoader(spark)
-    //    println("Hello World")
-    //    println("This is a change ")
-
     //    start test
     val jake = new jake
     jake.printName()
     jake.dataLoader(spark)
+    jake.query1(spark)
+    jake.query2(spark)
   }
 }
