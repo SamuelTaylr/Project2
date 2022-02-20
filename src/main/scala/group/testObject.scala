@@ -1,0 +1,251 @@
+package group
+
+import org.apache.spark.sql.SparkSession
+
+import java.io.FileInputStream
+import scalafx.application.JFXApp
+import scalafx.geometry.Insets
+import scalafx.scene.Scene
+import scalafx.scene.effect.DropShadow
+import scalafx.scene.layout.HBox
+import scalafx.scene.paint.Color._
+import scalafx.scene.paint._
+import scalafx.scene.text.Text
+import scalafx.application.JFXApp
+import scalafx.geometry.Insets
+import scalafx.scene.Scene
+import scalafx.scene.effect.DropShadow
+import scalafx.scene.layout.HBox
+import scalafx.scene.paint.Color._
+import scalafx.scene.paint._
+import scalafx.scene.text.Text
+import scalafx._
+import scalafx.event.ActionEvent
+import scalafx.scene.control.{Alert, Button, Label, PasswordField, TextField}
+import scalafx.Includes._
+import scalafx.scene.control.Alert.AlertType
+import scalafx.scene.image.{Image, ImageView}
+
+object testObject extends JFXApp {
+
+  val spark = SparkSession
+    .builder
+    .appName("hello hive")
+    .config("spark.master", "local")
+    .enableHiveSupport()
+    .getOrCreate()
+  println("Spark Works Y'all")
+  spark.sparkContext.setLogLevel("ERROR")
+
+
+
+  menuStage()
+
+  def menuStage(): Unit = {
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(300, 100) {
+        val label = new Label("Enter Username and Password")
+        label.layoutX = 20
+        label.layoutY = 10
+        val button = new Button("Login")
+
+        button.onAction = (e: ActionEvent) => {
+          val user = userField.text.value
+          val password = passField.text.value
+          var bool = false
+          bool = loginMethods.login(user,password)
+
+          if ((bool == true) && (user == "admin")) {
+            adminStage()
+
+            /*if(user == "admin") {
+              adminStage()
+            }
+            else {
+              menuStageTwo()
+            }*/
+          } else if ((bool == true) && (user.length > 1)) {
+            menuStageTwo()
+          }
+          else {
+            new Alert(AlertType.Information) {
+              initOwner(stage)
+              title = "Warning"
+              contentText = "Incorrect Username or Password"
+            }.showAndWait()
+            menuStage()
+          }
+        }
+
+        button.layoutX = 200
+        button.layoutY = 50
+        val userField = new TextField()
+        userField.layoutX = 20
+        userField.layoutY = 30
+        val passField = new PasswordField()
+        passField.layoutX = 20
+        passField.layoutY = 60
+
+        content = List(label, button, userField, passField)
+
+
+      }
+
+    }
+  }
+  def menuStageTwo(): Unit = {
+
+    val sam = new sam
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(300, 200) {
+
+        val label = new Label("Project 2 Queries:")
+        label.layoutX = 20
+        label.layoutY = 10
+
+        val button = new Button("Query 1")
+        button.onAction = (e: ActionEvent) => {
+          println("Query1")
+        }
+        button.layoutX = 20
+        button.layoutY = 30
+
+        val button2 = new Button("Query 2")
+        button2.onAction = (e: ActionEvent) => {
+          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          menuStageThree()
+        }
+        button2.layoutX = 20
+        button2.layoutY = 70
+
+        val button3 = new Button("Query 3")
+        button3.onAction = (e: ActionEvent) => {
+          println("Query3")
+        }
+        button3.layoutX = 20
+        button3.layoutY = 110
+
+        val button4 = new Button("Query 4")
+        button4.onAction = (e: ActionEvent) => {
+          println("Query4")
+        }
+        button4.layoutX = 20
+        button4.layoutY = 150
+
+        val button5 = new Button("Query 5")
+        button5.onAction = (e: ActionEvent) => {
+          println("Query5")
+        }
+        button5.layoutX = 100
+        button5.layoutY = 30
+
+        val button6 = new Button("Query 6")
+        button6.onAction = (e: ActionEvent) => {
+          println("Query6")
+        }
+        button6.layoutX = 100
+        button6.layoutY = 70
+
+        val button7 = new Button("Query 7")
+        button7.onAction = (e: ActionEvent) => {
+          println("Query7")
+        }
+        button7.layoutX = 100
+        button7.layoutY = 110
+
+        val button8 = new Button("Query 8")
+        button8.onAction = (e: ActionEvent) => {
+          println("Query8")
+        }
+        button8.layoutX = 100
+        button8.layoutY = 150
+
+        val button9 = new Button("ML Scenario")
+        button9.onAction = (e: ActionEvent) => {
+          println("ML Query")
+        }
+        button9.layoutX = 180
+        button9.layoutY = 80
+
+
+        content = List(label, button, button2, button3, button4, button5, button6, button7, button8, button9 )
+
+
+      }
+    }
+
+
+
+  }
+
+  def menuStageThree(): Unit = {
+
+    val stream = new FileInputStream("input/USConfCases.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1900, 400) {
+
+        val button = new Button("Back")
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def adminStage(): Unit = {
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Admin Panel"
+      scene = new Scene(300, 100) {
+        val label = new Label("Add a new user: ")
+        label.layoutX = 20
+        label.layoutY = 10
+        val button = new Button("Confirm")
+
+        button.onAction = (e: ActionEvent) => {
+          val user = userField.text.value
+          val password = passField.text.value
+          loginMethods.addNewUser(user,password)
+          new Alert(AlertType.Information) {
+            initOwner(stage)
+            title = "Info"
+            contentText = "New User Added Successfully"
+          }.showAndWait()
+          menuStage()
+
+
+        }
+
+        button.layoutX = 200
+        button.layoutY = 50
+        val userField = new TextField()
+        userField.layoutX = 20
+        userField.layoutY = 30
+        val passField = new PasswordField()
+        passField.layoutX = 20
+        passField.layoutY = 60
+
+        content = List(label, button, userField, passField)
+
+
+      }
+
+    }
+  }
+
+}

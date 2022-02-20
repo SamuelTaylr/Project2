@@ -9,10 +9,10 @@ class dbGetConnection {
     val databaseUserName = "admin"
     val databasePassword = "adminHhg5"
     val driver = "com.mysql.cj.jdbc.Driver"
-    val con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
+    var con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
     try{
       Class.forName(driver)
-      //      val con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
+      con = DriverManager.getConnection(mySQLURL, databaseUserName, databasePassword)
     } catch {
       case e: Exception =>
         e.printStackTrace()
