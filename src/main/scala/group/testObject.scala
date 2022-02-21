@@ -117,7 +117,7 @@ object testObject extends JFXApp {
         val button2 = new Button("Query 2")
         button2.onAction = (e: ActionEvent) => {
           sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
-          menuStageThree()
+          submenuQuery1()
         }
         button2.layoutX = 20
         button2.layoutY = 70
@@ -176,35 +176,12 @@ object testObject extends JFXApp {
 
 
       }
-    }
-
-
-
-  }
-
-  def menuStageThree(): Unit = {
-
-    val stream = new FileInputStream("input/USConfCases.png")
-    val image = new Image(stream)
-    val imageview = new ImageView()
-    imageview.setImage(image)
-    imageview.preserveRatio
-
-
-    stage = new JFXApp.PrimaryStage {
-      title = "Project 2"
-      scene = new Scene(1900, 400) {
-
-        val button = new Button("Back")
-        button.onAction = (e: ActionEvent) => {
-          menuStageTwo()
-        }
-
-        content = List(imageview, button)
-      }
+      stage.centerOnScreen()
 
     }
-    stage.centerOnScreen()
+
+
+
   }
 
   def adminStage(): Unit = {
@@ -246,6 +223,156 @@ object testObject extends JFXApp {
       }
 
     }
+  }
+
+  def submenuQuery1() : Unit = {
+    val sam = new sam
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(300, 200) {
+
+        val label = new Label("Query 1 Subqueries:")
+        label.layoutX = 20
+        label.layoutY = 10
+
+        val button = new Button("US Conf. Cases")
+        button.onAction = (e: ActionEvent) => {
+          usConfCases()
+        }
+        button.layoutX = 20
+        button.layoutY = 30
+
+        val button2 = new Button("India Conf. Cases")
+        button2.onAction = (e: ActionEvent) => {
+          indiaConfCases()
+
+        }
+        button2.layoutX = 20
+        button2.layoutY = 70
+
+        val button3 = new Button("China Conf. Cases")
+        button3.onAction = (e: ActionEvent) => {
+          chinaConfCases()
+        }
+        button3.layoutX = 20
+        button3.layoutY = 110
+
+        val button4 = new Button("US Deaths")
+        button4.onAction = (e: ActionEvent) => {
+          println("Query4")
+        }
+        button4.layoutX = 140
+        button4.layoutY = 30
+
+        val button5 = new Button("India Deaths")
+        button5.onAction = (e: ActionEvent) => {
+          println("Query5")
+        }
+        button5.layoutX = 140
+        button5.layoutY = 70
+
+        val button6 = new Button("China Deaths")
+        button6.onAction = (e: ActionEvent) => {
+          println("Query6")
+        }
+        button6.layoutX = 140
+        button6.layoutY = 110
+
+        val button7 = new Button("Back")
+        button7.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+        button7.layoutX = 140
+        button7.layoutY = 150
+
+        content = List(label, button, button2, button3, button4, button5, button6, button7 )
+
+
+      }
+    }
+
+  }
+
+  def usConfCases(): Unit = {
+
+    val stream = new FileInputStream("input/USConfCases.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1900, 400) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 0
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def indiaConfCases(): Unit = {
+
+    val stream = new FileInputStream("input/IndiaConfCases.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1900, 400) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 0
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def chinaConfCases(): Unit = {
+
+    val stream = new FileInputStream("input/ChinaConfCases.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1900, 400) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 0
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
   }
 
 }
