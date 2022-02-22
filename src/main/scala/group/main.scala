@@ -26,7 +26,7 @@ object main {
     val jake = new jake
     jake.printName()
     jake.dataLoader(spark)
-    jake.query1(spark)
+    jake.rollingMonthAnalysis(spark)
 //    jake.query2(spark)
   }
 }
