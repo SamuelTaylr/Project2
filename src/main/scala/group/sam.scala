@@ -26,11 +26,12 @@ class sam {
   def dataLoader(spark: SparkSession, covidDF: DataFrame): Unit = {
 
     import spark.implicits._
-
-
-
     //Creating temporary view "Covid" from modifiedDF
     covidDF.createOrReplaceTempView("Covid")
+
+  }
+
+  def subQuery1(spark: SparkSession): Unit = {
 
     val newDfUS = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'US') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -49,6 +50,10 @@ class sam {
 
     newDfUS.select("*").persist().show(100)
 
+  }
+
+  def subQuery2(spark: SparkSession): Unit = {
+
     val newDfIndia = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'India') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
       "'2020-02-28' and Country = 'India') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
@@ -66,6 +71,10 @@ class sam {
 
     newDfIndia.select("*").persist().show(100)
 
+  }
+
+  def subQuery3(spark: SparkSession): Unit = {
+
     val newDfChina = spark.sql("(select sum(confirmed) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Feb_Confirmed from Covid where Obs_Date =" +
       "'2020-02-28' and Country = 'Mainland China') UNION ALL (select sum(confirmed) as Mar_Confirmed from Covid " +
@@ -82,6 +91,9 @@ class sam {
       "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
 
     newDfChina.select("*").persist().show(100)
+  }
+
+  def subQuery4(spark: SparkSession): Unit = {
 
     val newDfUSDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'US') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -99,6 +111,9 @@ class sam {
       "where Obs_Date = '2020-12-31' and Country = 'US')").persist()
 
     newDfUSDeath.select("*").persist().show(100)
+  }
+
+  def subQuery5(spark: SparkSession): Unit = {
 
     val newDfIndiaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'India') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -116,6 +131,9 @@ class sam {
       "from Covid where Obs_Date = '2020-12-31' and Country = 'India')").persist()
 
     newDfIndiaDeath.select("*").persist().show(100)
+  }
+
+  def subQuery6(spark: SparkSession): Unit = {
 
     val newDfChinaDeath = spark.sql("(select sum(deaths) as Jan_Confirmed from Covid where Obs_Date = '2020-01-31' " +
       " and Country = 'Mainland China') UNION ALL (select sum(deaths) as Feb_Confirmed from Covid where Obs_Date =" +
@@ -133,7 +151,6 @@ class sam {
       "from Covid where Obs_Date = '2020-12-31' and Country = 'Mainland China')").persist()
 
     newDfChinaDeath.select("*").persist().show(100)
-
   }
 
 }

@@ -19,8 +19,7 @@ object loginMethods {
       while (resultSet.next()) {
         username2 = resultSet.getString("username")
         password2 = resultSet.getString("password")
-        // val PasswordName = getEncryptedPassword(PasswordName)
-        //  println("UserName, Password = " + UserName + ", " + PasswordName)
+
       }
 
       if(username.equals(username2)&&(password.equals(password2))) {

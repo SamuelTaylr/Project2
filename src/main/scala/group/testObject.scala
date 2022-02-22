@@ -109,15 +109,15 @@ object testObject extends JFXApp {
 
         val button = new Button("Query 1")
         button.onAction = (e: ActionEvent) => {
-          println("Query1")
+          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          submenuQuery1()
         }
         button.layoutX = 20
         button.layoutY = 30
 
         val button2 = new Button("Query 2")
         button2.onAction = (e: ActionEvent) => {
-          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
-          submenuQuery1()
+          println("Query2")
         }
         button2.layoutX = 20
         button2.layoutY = 70
@@ -232,12 +232,13 @@ object testObject extends JFXApp {
       title = "Project 2"
       scene = new Scene(300, 200) {
 
-        val label = new Label("Query 1 Subqueries:")
+        val label = new Label("Query 1 - Subqueries:")
         label.layoutX = 20
         label.layoutY = 10
 
         val button = new Button("US Conf. Cases")
         button.onAction = (e: ActionEvent) => {
+          sam.subQuery1(spark)
           usConfCases()
         }
         button.layoutX = 20
@@ -245,6 +246,7 @@ object testObject extends JFXApp {
 
         val button2 = new Button("India Conf. Cases")
         button2.onAction = (e: ActionEvent) => {
+          sam.subQuery2(spark)
           indiaConfCases()
 
         }
@@ -253,6 +255,7 @@ object testObject extends JFXApp {
 
         val button3 = new Button("China Conf. Cases")
         button3.onAction = (e: ActionEvent) => {
+          sam.subQuery3(spark)
           chinaConfCases()
         }
         button3.layoutX = 20
@@ -260,21 +263,24 @@ object testObject extends JFXApp {
 
         val button4 = new Button("US Deaths")
         button4.onAction = (e: ActionEvent) => {
-          println("Query4")
+          sam.subQuery4(spark)
+
         }
         button4.layoutX = 140
         button4.layoutY = 30
 
         val button5 = new Button("India Deaths")
         button5.onAction = (e: ActionEvent) => {
-          println("Query5")
+          sam.subQuery5(spark)
+
         }
         button5.layoutX = 140
         button5.layoutY = 70
 
         val button6 = new Button("China Deaths")
         button6.onAction = (e: ActionEvent) => {
-          println("Query6")
+          sam.subQuery6(spark)
+
         }
         button6.layoutX = 140
         button6.layoutY = 110
