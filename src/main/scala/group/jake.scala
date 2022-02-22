@@ -65,17 +65,18 @@ class jake {
        */
       println("~ Displaying cases in China from January 2020 to July 2020 ~")
       println("Total Cases (Confirmed, Death, and Recovery):")
-      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
+      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered, (sum(Confirmed) - sum(Recovered) - sum(Deaths)) as difference_of_totals FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
       println("Total Average Cases per day (Confirmed, Death, and Recovery):")
       spark.sql("SELECT round(avg(Confirmed), 2) as Average_Confirmed, round(avg(Deaths), 2) as Average_Deaths, round(avg(Recovered), 2) as Average_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
       spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
+//      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-01-31' and Country = 'Mainland China' OR Country = 'China'").show()
     }
 
     val vietQuery = {
       //    Vietnam
       println("~ Displaying cases in Vietnam from March 2020 to September 2020 ~")
       println("Total Cases (Confirmed, Death, and Recovery):")
-      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Vietnam'").show()
+      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered, (sum(Confirmed) - sum(Recovered) - sum(Deaths)) as difference_of_totals FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Vietnam'").show()
       println("Total Average Cases per day (Confirmed, Death, and Recovery):")
       spark.sql("SELECT round(avg(Confirmed), 2) as Average_Confirmed, round(avg(Deaths), 2) as Average_Deaths, round(avg(Recovered), 2) as Average_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Vietnam'").show()
       spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Vietnam'").show()
@@ -86,7 +87,7 @@ class jake {
       //    Taiwan - results are similar to Vietnam
       println("~ Displaying cases in Taiwan from March 2020 to September 2020 ~")
       println("Total Cases (Confirmed, Death, and Recovery):")
-      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Taiwan'").show()
+      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered, (sum(Confirmed) - sum(Recovered) - sum(Deaths)) as difference_of_totals FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Taiwan'").show()
       println("Total Average Cases per day (Confirmed, Death, and Recovery):")
       spark.sql("SELECT round(avg(Confirmed), 2) as Average_Confirmed, round(avg(Deaths), 2) as Average_Deaths, round(avg(Recovered), 2) as Average_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'Taiwan'").show()
       spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Taiwan'").show()
@@ -96,7 +97,7 @@ class jake {
       //    India - the worst of the two impacted in the same time frame
       println("~ Displaying cases in India from March 2020 to September 2020 ~")
       println("Total Cases (Confirmed, Death, and Recovery):")
-      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'India'").show()
+      spark.sql("SELECT sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered, (sum(Confirmed) - sum(Recovered) - sum(Deaths)) as difference_of_totals FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'India'").show()
       println("Total Average Cases per day (Confirmed, Death, and Recovery):")
       spark.sql("SELECT round(avg(Confirmed), 2) as Average_Confirmed, round(avg(Deaths), 2) as Average_Deaths, round(avg(Recovered), 2) as Average_Recovered FROM Covid WHERE Obs_Date BETWEEN '2020-04-22' and '2020-09-31' and Country = 'India'").show()
       spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'India'").show()
