@@ -35,7 +35,7 @@ object main {
     println(finalBool)
     if(finalBool) {println("this works")} else {println("dammit")}*/
 
-    //mark.avgCasesByMonth(covidDf, spark)
+    mark.avgCasesByMonth(covidDf, spark)
     mark.avgCasesByQuarter(covidDf, spark)
   }
 }

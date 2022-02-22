@@ -50,31 +50,33 @@ object mark {
 
   def avgCasesByMonth(inputDF : DataFrame, spark : SparkSession): Unit = {
     inputDF.createOrReplaceTempView("AvgQuery")
-    spark.sql("(select round(avg(Confirmed), 2) from AvgQuery As Jan2020_Avg where Obs_Date = '2020-01-31') " +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Feb2020_Avg where Obs_Date ='2020-02-29')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Mar2020_Avg where Obs_Date = '2020-03-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Apr2020_Avg where Obs_Date = '2020-04-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As May2020_Avg where Obs_Date = '2020-05-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Jun2020_Avg where Obs_Date = '2020-06-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Jul2020_Avg where Obs_Date = '2020-07-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Aug2020_Avg where Obs_Date = '2020-08-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Sep2020_Avg where Obs_Date = '2020-09-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Oct2020_Avg where Obs_Date = '2020-10-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Nov2020_Avg where Obs_Date = '2020-11-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Dec2020_Avg where Obs_Date = '2020-12-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Jan2021_Avg where Obs_Date = '2021-01-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Feb2021_Avg where Obs_Date = '2021-02-28')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Mar2021_Avg where Obs_Date = '2021-03-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Apr2021_Avg where Obs_Date = '2021-04-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As May2021_Avg where Obs_Date = '2021-05-05')").show()
+    val globAvgByMonth = spark.sql("(select round(avg(Confirmed), 2) as Global_AvgConfJan20, round(avg(Deaths), 2) as Global_AvgDeathJan20, round(avg(Recovered), 2) as Global_AvgRecJan20 from AvgQuery As Jan2020_Avg where Obs_Date = '2020-01-31') " +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfFeb20, round(avg(Deaths), 2) as Global_AvgDeathFeb20, round(avg(Recovered), 2) as Global_AvgRecFeb20 from AvgQuery where Obs_Date ='2020-02-29')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfMar20, round(avg(Deaths), 2) as Global_AvgDeathMar20, round(avg(Recovered), 2) as Global_AvgRecMar20 from AvgQuery where Obs_Date = '2020-03-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfApr20, round(avg(Deaths), 2) as Global_AvgDeathApr20, round(avg(Recovered), 2) as Global_AvgRecApr20 from AvgQuery where Obs_Date = '2020-04-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfMay20, round(avg(Deaths), 2) as Global_AvgDeathMay20, round(avg(Recovered), 2) as Global_AvgRecMay20 from AvgQuery where Obs_Date = '2020-05-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfJun20, round(avg(Deaths), 2) as Global_AvgDeathJun20, round(avg(Recovered), 2) as Global_AvgRecJun20 from AvgQuery where Obs_Date = '2020-06-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfJul20, round(avg(Deaths), 2) as Global_AvgDeathJul20, round(avg(Recovered), 2) as Global_AvgRecJul20 from AvgQuery where Obs_Date = '2020-07-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfAug20, round(avg(Deaths), 2) as Global_AvgDeathAug20, round(avg(Recovered), 2) as Global_AvgRecAug20 from AvgQuery where Obs_Date = '2020-08-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfSep20, round(avg(Deaths), 2) as Global_AvgDeathSep20, round(avg(Recovered), 2) as Global_AvgRecSep20 from AvgQuery where Obs_Date = '2020-09-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfOct20, round(avg(Deaths), 2) as Global_AvgDeathOct20, round(avg(Recovered), 2) as Global_AvgRecOct20 from AvgQuery where Obs_Date = '2020-10-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfNov20, round(avg(Deaths), 2) as Global_AvgDeathNov20, round(avg(Recovered), 2) as Global_AvgRecNov20 from AvgQuery where Obs_Date = '2020-11-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfDec20, round(avg(Deaths), 2) as Global_AvgDeathDec20, round(avg(Recovered), 2) as Global_AvgRecDec20 from AvgQuery where Obs_Date = '2020-12-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfJan21, round(avg(Deaths), 2) as Global_AvgDeathJan21, round(avg(Recovered), 2) as Global_AvgRecJan21 from AvgQuery where Obs_Date = '2021-01-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfFeb21, round(avg(Deaths), 2) as Global_AvgDeathFeb21, round(avg(Recovered), 2) as Global_AvgRecFeb21 from AvgQuery where Obs_Date = '2021-02-28')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfMar21, round(avg(Deaths), 2) as Global_AvgDeathMar21, round(avg(Recovered), 2) as Global_AvgRecMar21 from AvgQuery where Obs_Date = '2021-03-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfApr21, round(avg(Deaths), 2) as Global_AvgDeathApr21, round(avg(Recovered), 2) as Global_AvgRecApr21 from AvgQuery where Obs_Date = '2021-04-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) as Global_AvgConfMay21, round(avg(Deaths), 2) as Global_AvgDeathMay21, round(avg(Recovered), 2) as Global_AvgRecMay21 from AvgQuery where Obs_Date = '2021-05-05')").persist()
+    globAvgByMonth.show()
   }
 
   def avgCasesByQuarter(inputDF : DataFrame, spark : SparkSession):Unit = {
     inputDF.createOrReplaceTempView("AvgQuery")
-    spark.sql("(select round(avg(Confirmed), 2) from AvgQuery As Quarter1_Avg Where Obs_Date Between '2020-01-22' and '2020-03-31')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter2_Avg Where Obs_Date Between '2020-04-01' and '2020-06-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter3_Avg Where Obs_Date Between '2020-07-01' and '2020-09-30')" +
-      "UNION ALL(select round(avg(Confirmed), 2) from AvgQuery As Quarter4_Avg Where Obs_Date Between '2020-10-01' and '2020-12-31')").show()
+    val globalAvgByQuarter = spark.sql("(select round(avg(Confirmed), 2) As Quarter1_AvgConf, round(avg(Deaths), 2) As Quarter1_AvgDeaths, round(avg(Recovered), 2) As Quarter1_AvgRec From AvgQuery Where Obs_Date Between '2020-01-22' and '2020-03-31')" +
+      "UNION ALL(select round(avg(Confirmed), 2) As Quarter2_AvgConf, round(avg(Deaths), 2) As Quarter2_AvgDeaths, round(avg(Recovered), 2) As Quarter2_AvgRec From AvgQuery Where Obs_Date Between '2020-04-01' and '2020-06-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) As Quarter3_AvgConf, round(avg(Deaths), 2) As Quarter3_AvgDeaths, round(avg(Recovered), 2) As Quarter3_AvgRec From AvgQuery Where Obs_Date Between '2020-07-01' and '2020-09-30')" +
+      "UNION ALL(select round(avg(Confirmed), 2) As Quarter4_AvgConf, round(avg(Deaths), 2) As Quarter3_AvgDeaths, round(avg(Recovered), 2) As Quarter3_AvgRec From AvgQuery Where Obs_Date Between '2020-10-01' and '2020-12-31')").persist()
+    globalAvgByQuarter.show()
   }
 
 }
