@@ -119,6 +119,7 @@ object testObject extends JFXApp {
         button2.onAction = (e: ActionEvent) => {
           sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
           sam.query2(spark)
+          worldDeaths()
         }
         button2.layoutX = 20
         button2.layoutY = 70
@@ -265,6 +266,7 @@ object testObject extends JFXApp {
         val button4 = new Button("US Deaths")
         button4.onAction = (e: ActionEvent) => {
           sam.subQuery4(spark)
+          usDeaths()
 
         }
         button4.layoutX = 140
@@ -273,7 +275,7 @@ object testObject extends JFXApp {
         val button5 = new Button("India Deaths")
         button5.onAction = (e: ActionEvent) => {
           sam.subQuery5(spark)
-
+          indiaDeaths()
         }
         button5.layoutX = 140
         button5.layoutY = 70
@@ -281,7 +283,7 @@ object testObject extends JFXApp {
         val button6 = new Button("China Deaths")
         button6.onAction = (e: ActionEvent) => {
           sam.subQuery6(spark)
-
+          chinaDeaths()
         }
         button6.layoutX = 140
         button6.layoutY = 110
@@ -312,11 +314,11 @@ object testObject extends JFXApp {
 
     stage = new JFXApp.PrimaryStage {
       title = "Project 2"
-      scene = new Scene(1900, 400) {
+      scene = new Scene(1250, 800) {
 
         val button = new Button("Back")
         button.layoutX = 10
-        button.layoutY = 0
+        button.layoutY = 20
         button.onAction = (e: ActionEvent) => {
           submenuQuery1()
         }
@@ -339,11 +341,11 @@ object testObject extends JFXApp {
 
     stage = new JFXApp.PrimaryStage {
       title = "Project 2"
-      scene = new Scene(1900, 400) {
+      scene = new Scene(1250, 800) {
 
         val button = new Button("Back")
         button.layoutX = 10
-        button.layoutY = 0
+        button.layoutY = 20
         button.onAction = (e: ActionEvent) => {
           submenuQuery1()
         }
@@ -366,13 +368,121 @@ object testObject extends JFXApp {
 
     stage = new JFXApp.PrimaryStage {
       title = "Project 2"
-      scene = new Scene(1900, 400) {
+      scene = new Scene(1250, 800) {
 
         val button = new Button("Back")
         button.layoutX = 10
-        button.layoutY = 0
+        button.layoutY = 20
         button.onAction = (e: ActionEvent) => {
           submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def usDeaths(): Unit = {
+
+    val stream = new FileInputStream("input/USDeaths.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 800) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def indiaDeaths(): Unit = {
+
+    val stream = new FileInputStream("input/IndiaDeaths.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 800) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def chinaDeaths(): Unit = {
+
+    val stream = new FileInputStream("input/ChinaDeaths.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 800) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          submenuQuery1()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def worldDeaths(): Unit = {
+
+    val stream = new FileInputStream("input/WorldDeaths.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 800) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
         }
 
         content = List(imageview, button)
