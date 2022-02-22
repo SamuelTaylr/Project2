@@ -153,4 +153,21 @@ class sam {
     newDfChinaDeath.select("*").persist().show(100)
   }
 
+  def query2(spark: SparkSession): Unit = {
+    //covidDF.createOrReplaceTempView("Covid")
+
+    val worldDeaths = spark.sql("(select sum(deaths) as Total_Deaths, first(country) as Country from Covid where Country = 'Mainland China' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'India' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'US' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Indonesia' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Pakistan' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Brazil' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Nigeria' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Bangladesh' and Obs_date = '2020-12-31') " +
+      "union all (select sum(deaths), first(country) from Covid where Country = 'Russia' and Obs_date = '2020-12-31') ").persist()
+
+
+    worldDeaths.select("*").persist().show(100)
+  }
+
 }

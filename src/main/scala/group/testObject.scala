@@ -117,7 +117,8 @@ object testObject extends JFXApp {
 
         val button2 = new Button("Query 2")
         button2.onAction = (e: ActionEvent) => {
-          println("Query2")
+          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          sam.query2(spark)
         }
         button2.layoutX = 20
         button2.layoutY = 70

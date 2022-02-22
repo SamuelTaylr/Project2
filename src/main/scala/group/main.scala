@@ -23,8 +23,9 @@ object main {
     menu.selectionMenu(spark)*/
 
     val sam = new sam
-    testObject.menuStage()
-    sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+    //testObject.menuStage()
+    /*sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+    sam.query2(spark)*/
 
 
   }
