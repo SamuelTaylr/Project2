@@ -1,12 +1,9 @@
 package group
 
-import group.main.spark
-import org.apache.spark.sql.SQLImplicits
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.functions._
 
 class jake {
-//  case class monthsOfYear(months_of_year: String)
   def printName(): Unit ={
     println("+" + ("=" * 49) + "+" +
       s"""\nJake
@@ -14,18 +11,13 @@ class jake {
   }
 
   def dataLoader(spark: SparkSession): Unit = {
-
-
     System.setProperty("hadoop.home.dir", "C:\\winutils")
-
     val spark = SparkSession
       .builder()
       .appName("Project2")
       .config("spark.master", "local")
       .enableHiveSupport()
       .getOrCreate()
-//    spark.sparkContext.setLogLevel("ERROR")
-//    println("Spark Works Y'all")
     import spark.implicits._
 
     //Creating initial DataFrame from csv file
@@ -46,7 +38,6 @@ class jake {
 
     //Shows Data types of modifiedDF as an array
 //    println(covidDF.dtypes.mkString("Array(", ", ", ")"))
-
   }
 
   def rollingMonthAnalysis(spark: SparkSession): Unit = {
