@@ -1,11 +1,14 @@
+import sun.security.util.Password
+
+import java.lang.System.console
 import java.security.MessageDigest
 import java.sql.{Connection, DriverManager, PreparedStatement, ResultSet, Statement}
+import scala.io.StdIn._
 
 object ScalaJdbcConnectSelect {
   // connect to the database named "mysql" on the localhost
   val con = dataBaseConnection
   val connection=con.dbConnection()
-
   var resultSet: ResultSet = null
   var myStmt: PreparedStatement=null
 
@@ -18,15 +21,67 @@ object ScalaJdbcConnectSelect {
 
 
   // EncryptedPassword method
- /* def getEncryptedPassword(Pass_word1: String) {
+  /*def getEncryptedPassword(password: String): String = {
     MessageDigest
       .getInstance("SHA-256")
-      .digest(Pass_word1.getBytes("UTF-8"))
+      .digest(password.getBytes("UTF-8"))
       .map("%02X".format(_))
       .mkString
   }*/
+  def mask(password:String): Unit ={
+    print(mask(password))
+  }
 
-  def login(): Unit= {
+  /*def pollForInput(query: String = ">Enter your Input"): String = {
+    val input = readLine(s"$query\n")
+    input
+  }*/
+
+  def login() {
+    val connection=con.dbConnection()
+    println("connection created")
+    val name=readLine("Username:")
+    val pass = readLine("PasswordName:")
+   //val pass = console().readPassword("PasswordName:")
+
+
+
+    //val pass = readLine("PasswordName: ")
+    println("username "+name,"password "+pass)
+    try {
+      // create the statement, and run the select query
+      val statement = connection.createStatement()
+      //var cmd="SELECT FROM LogIn WHERE UserName = ? AND PasswordName = ?"
+      var cmd = "Select UserName,PasswordName from LogIn";
+      println(cmd)
+      //dbConnection()
+      resultSet = executeQuery(cmd)
+      println("resultset value" + resultSet)
+      while (resultSet.next()) {
+        val UserName = resultSet.getString("UserName")
+        val PasswordName = resultSet.getString("PasswordName")
+        if (UserName.equals(name) && (PasswordName.equals(pass))) {
+          println("you are login")
+        }
+      }
+    }
+  catch {
+    case e => e.printStackTrace
+  }
+}
+    /*Database.GetUser(name) match {
+      case Some(res) => {
+        if (!(res.GetPassword() == pass && res.GetUsername() == name)) { println("Incorrect login\n"); return }
+
+        State.SetLoggedIn(true)
+        State.SetUser(res)
+      }*/
+     /* case None => {
+        println(s"Incorrect login\n")
+      }*/
+
+
+  /*def login(): Unit= {
    try {
      // create the statement, and run the select query
      val statement = connection.createStatement()
@@ -47,23 +102,23 @@ object ScalaJdbcConnectSelect {
        println("Enter Password")
        var Pass_word1 = scala.io.StdIn.readLine()
        //val Pass_word  = getEncryptedPassword(Pass_word1 )
-       /*if(UserName.equals(User_Name)&&(PasswordName.equals(Pass_word))) {
+       if(UserName.equals(User_Name)&&(PasswordName.equals(Pass_word))) {
          println("you are login")
-       }*/
-       /*else if(!(UserName.equals(User_Name)&&(PasswordName.equals(Pass_word)))){
+       }
+       else if(!(UserName.equals(User_Name)&&(PasswordName.equals(Pass_word)))){
           println("Register Input")
           //registerUser()
-        }*/
-       //else{ println("wrong input")}
+        }
+       else{ println("wrong input")}
 
      }
    }
    catch {
      case e => e.printStackTrace
    }
-  }
+  }*/
 
-  def registerUser(): Unit= {
+  /*def registerUser(): Unit= {
     println("register here")
     try {
       println("Enter usename")
@@ -85,13 +140,13 @@ object ScalaJdbcConnectSelect {
     catch {
       case e => e.printStackTrace
     }
-  }
+  }*/
   def exit():Unit={
     println("exit")
 
   }
 
-  def loginScreen(): Boolean = {
+  /*def loginScreen(): Boolean = {
     println("\nWelcome to Covid Slots. Please log in or create a new user if you're new")
     println("[1]: Log In")
     println("[2]: Register New User")
@@ -100,21 +155,22 @@ object ScalaJdbcConnectSelect {
     val input = readInt().toString
     input match {
       case "1" => { login() }
-      case "2" => { registerUser() }
+     // case "2" => { registerUser() }
       //case "3" => { findUser() }
       case "4" => { exit() }
       case _ => println("Invalid choice\n")
     }
 
     return false
-  }
+  }*/
 
 
 
   def main(args: Array[String]): Unit = {
     //dbConnection()
-    //logInMatch();
-    loginScreen()
+    login();
+    //loginScreen()
+
 }
 
 }
