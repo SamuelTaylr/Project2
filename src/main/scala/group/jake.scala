@@ -63,7 +63,7 @@ class jake {
       +  "UNION ALL SELECT 'May' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-05-1' and '2020-05-31' and Country = 'Mainland China' OR Country = 'China')"
       +  "UNION ALL SELECT 'June' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-06-1' and '2020-06-31' and Country = 'Mainland China' OR Country = 'China')"
       +  "UNION ALL SELECT 'July' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-07-1' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China')").show()
-//      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-01-22' and '2020-07-31' and Country = 'Mainland China' OR Country = 'China'").show()
     }
 
     val vietQuery = {
@@ -81,7 +81,7 @@ class jake {
         +  "UNION ALL SELECT 'July' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-05-1' and '2020-05-31' and Country = 'Vietnam')"
         +  "UNION ALL SELECT 'August' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-06-1' and '2020-06-31' and Country = 'Vietnam')"
         +  "UNION ALL SELECT 'September' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-07-1' and '2020-07-31' and Country = 'Vietnam')").show()
-//      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Vietnam'").show()
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Vietnam'").show()
     }
 
     val taiQuery = {
@@ -99,7 +99,7 @@ class jake {
         +  "UNION ALL SELECT 'July' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-05-1' and '2020-05-31' and Country = 'Taiwan')"
         +  "UNION ALL SELECT 'August' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-06-1' and '2020-06-31' and Country = 'Taiwan')"
         +  "UNION ALL SELECT 'September' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-07-1' and '2020-07-31' and Country = 'Taiwan')").show()
-//      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Taiwan'").show()
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'Taiwan'").show()
     }
 
     val indiaQuery = {
@@ -117,7 +117,7 @@ class jake {
         +  "UNION ALL SELECT 'July' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-05-1' and '2020-05-31' and Country = 'India')"
         +  "UNION ALL SELECT 'August' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-06-1' and '2020-06-31' and Country = 'India')"
         +  "UNION ALL SELECT 'September' as Month, sum(Confirmed) as Total_Confirmed, sum(Deaths) as Total_Deaths, Sum(Recovered) as Total_Recovered FROM (SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-07-1' and '2020-07-31' and Country = 'India')").show()
-//      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'India'").show()
+      spark.sql("SELECT * FROM Covid WHERE Obs_Date BETWEEN '2020-03-1' and '2020-09-31' and Country = 'India'").show()
     }
   }
 }
