@@ -32,25 +32,32 @@ class jake {
     //Changing data type of Obs_Date column to "DateType" -- This will be the main Data Frame that we draw our queries from
     val covidDF = dfTest.withColumn("Obs_Date", to_date($"Obs_Date", "MM/dd/yyyy")).persist()
 
-    val covidPartPre = spark.read.option("header",true).option("inferSchema",true).format("parquet").load(
-      "input/CovidSelectPartitioned").toDF("Id", "Obs_Date","State","Update","Confirmed",
-      "Deaths","Recovered","Country").persist()
-
-    val covidPartPost = covidPartPre.select("Id", "Obs_Date","State","Country","Update","Confirmed",
-      "Deaths","Recovered").orderBy(asc("Id")).persist()
-
-    val covidQueryDF = covidPartPost.toDF().persist()
-
     //Creating temporary view "Covid" from covidDF
-    covidQueryDF.cache.createOrReplaceTempView("Covid")
-    monthsDF.cache.createOrReplaceTempView("Months_of_Year")
-
-    //Cache tables
-
+    covidDF.createOrReplaceTempView("Covid")
+    monthsDF.createOrReplaceTempView("Months_of_Year")
     //Shows Data types of modifiedDF as an array
 //    println(covidDF.dtypes.mkString("Array(", ", ", ")"))
 
-//    covidQueryDF.show()
+    //Partition covid by country
+    /* another idea is to partition by date - or combine the two partitions in subquery */
+//    spark.sql("CREATE TABLE IF NOT EXISTS CovidPartitioned(beverage String) PARTITIONED BY (Country String)")
+
+//    covidDF.write
+//    .partitionBy("Country")
+//    .mode("overwrite")
+//    .csv("output/CovidPartitioned")
+
+    val covidPartPre = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
+      "output/CovidPartitioned").toDF("Id", "Obs_Date","State","Update","Confirmed",
+      "Deaths","Recovered","Country").persist()
+
+    //df variable that fixes Country appearing as right-most column
+    val covidPartPost = covidPartPre.select("Id", "Obs_Date","State","Country","Update","Confirmed",
+      "Deaths","Recovered").orderBy(asc("Id"))
+
+    val chinaDF = covidPartPost.select("*").where("Country = 'Mainland China' OR Country = 'China'").toDF()
+
+
   }
 
   def rollingMonthAnalysis(spark: SparkSession): Unit = {

@@ -27,6 +27,5 @@ object main {
     jake.printName()
     jake.dataLoader(spark)
     jake.rollingMonthAnalysis(spark)
-//    jake.query2(spark)
   }
 }

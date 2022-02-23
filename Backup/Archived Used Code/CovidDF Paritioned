@@ -1,0 +1,60 @@
+    /* Version 2 - used in final */
+    //        val covidPartDF1 = covidDF.select("*").where("Country = 'Mainland China' OR Country = 'China' OR Country = 'Vietnam' OR Country = 'Taiwan' OR Country = 'India'").toDF()
+    //
+    //            covidPartDF1.write
+    //            .partitionBy("Country")
+    //            .mode("overwrite")
+    //            .parquet("input/CovidSelectPartitioned1")
+
+      /* !!Mark for Archival - Unused Version 1 */
+//    covidDF.write
+//    .partitionBy("Country")
+//    .mode("overwrite")
+//    .csv("output/CovidPartitioned")
+
+//    val covidPartPre = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
+//      "output/CovidPartitioned").toDF("Id", "Obs_Date","State","Update","Confirmed",
+//      "Deaths","Recovered","Country").persist()
+
+//    df variable that fixes Country appearing as right-most column
+//    val covidPartPost = covidPartPre.select("Id", "Obs_Date","State","Country","Update","Confirmed",
+//      "Deaths","Recovered").orderBy(asc("Id"))
+
+//    val chinaDF = covidPartPost.select("*").where("Country = 'Mainland China' OR Country = 'China'").toDF()
+//    val vietDF = covidPartPost.select("*").where("Country = 'Vietnam'").toDF()
+//    val taiDF = covidPartPost.select("*").where("Country = 'Taiwan'").toDF()
+//    val indiaDF = covidPartPost.select("*").where("Country = 'India'").toDF()
+
+    //    chinaDF.write
+    //    .partitionBy("Country")
+    //    .mode("overwrite")
+    //    .csv("input/china_data")
+
+    //    vietDF.write
+    //    .partitionBy("Country")
+    //    .mode("overwrite")
+    //    .csv("input/vietnam_data")
+
+    //    taiDF.write
+    //    .partitionBy("Country")
+    //    .mode("overwrite")
+    //    .csv("input/taiwan_data")
+
+    //    indiaDF.write
+    //    .partitionBy("Country")
+    //    .mode("overwrite")
+    //    .csv("input/india_data")
+
+    /* !!End Mark for Archival */
+
+    Old CSV
+    //    val covidPartDF = covidDF.select("*").where("Country = 'Mainland China' OR Country = 'China' OR Country = 'Vietnam' OR Country = 'Taiwan' OR Country = 'India'").toDF()
+    //
+    //        covidPartDF.write
+    //        .partitionBy("Country")
+    //        .mode("overwrite")
+    //        .csv("input/CovidSelectPartitioned")
+
+    //    val covidPartPre = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
+    //      "input/CovidSelectPartitioned").toDF("Id", "Obs_Date","State","Update","Confirmed",
+    //      "Deaths","Recovered","Country").persist()
