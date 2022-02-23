@@ -33,9 +33,13 @@ object main {
     val boolTest = testing.first().get(0)
     val finalBool = boolTest.asInstanceOf[Boolean]
     println(finalBool)
-    if(finalBool) {println("this works")} else {println("dammit")}*/
+    if(finalBool) {println("this works")} else {println("nope")}*/
 
-    mark.avgCasesByMonth(covidDf, spark)
-    mark.avgCasesByQuarter(covidDf, spark)
+    //mark.avgCasesByMonth(covidDf, spark).show()
+    //mark.avgCasesByQuarter(covidDf, spark).show()
+
+    val test = mark.queryToDataSet(covidDf, spark)
+    test.show()
+
   }
 }
