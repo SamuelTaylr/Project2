@@ -27,7 +27,8 @@ class sam {
 
     import spark.implicits._
     //Creating temporary view "Covid" from modifiedDF
-    covidDF.createOrReplaceTempView("Covid")
+    //covidDF.createOrReplaceTempView("Covid")
+    covidDF.write.format("parquet").mode("append").saveAsTable("Covid")
 
   }
 
@@ -169,6 +170,34 @@ class sam {
 
 
     worldDeaths.select("*").persist().show(100)
+  }
+
+  def mandeep(spark: SparkSession): Unit = {
+    //covidDF.createOrReplaceTempView("Covid")
+
+
+     println("Print Total Death and Average Recovered Case Comparing two Countries US AND INDIA")
+     val sqlDf5 = spark.sql("select sum(Deaths) as total_death,round(AVG(Recovered)) as AVG_Recovered from CovidTest " +
+       "where Obs_Date='2021-05-29' and Country='India' and State='Chandigarh' " +
+     "UNION ALL select sum(Deaths) as total_death,round(AVG(Recovered),3) as AVG_Recovered from CovidTest where Obs_Date='2021-05-29' " +
+       "and Country='India' and State='Uttar Pradesh' " +
+     "UNION ALL select sum(Deaths) as total_death,round(AVG(Recovered),3) as AVG_Recovered from CovidTest where Obs_Date='2021-05-29' " +
+       "and Country='US' and State='Washington' " +
+      "UNION ALL select sum(Deaths) as total_death,round(AVG(Recovered),3) as AVG_Recovered from CovidTest where Obs_Date='2021-05-29' " +
+       "and Country='US' and State='North Carolina' " +
+      "UNION ALL select sum(Deaths) as total_death,round(AVG(Recovered),3) as AVG_Recovered from CovidTest where Obs_Date='2021-05-29' " +
+       "and Country='India' and State='Delhi' ")
+    sqlDf5.show(300)
+
+    val sqlDf6 = spark.sql("(select extract(MONTH from Obs_Date) as month, EXTRACT(year from Obs_Date) as year, " +
+      "MAX(Deaths) as total_Death from CovidTest WHERE Country='India' group by month,year ORDER BY month ASC)" +
+       "UNION ALL (select extract(MONTH from Obs_Date) as month, EXTRACT(year from Obs_Date) as year, MAX(Deaths) as total_Death " +
+      "from CovidTest WHERE Country='US' group by month,year ORDER BY month ASC) " +
+       "UNION ALL (select extract(MONTH from Obs_Date) as month, EXTRACT(year from Obs_Date) as year, MAX(Deaths) as total_Death " +
+      "from CovidTest WHERE Country='China' group by month,year ORDER BY month ASC) " +
+       "UNION ALL (select extract(MONTH from Obs_Date) as month, EXTRACT(year from Obs_Date) as year, MAX(Deaths) as total_Death " +
+      "from CovidTest WHERE Country='UK' group by month,year ORDER BY month ASC) ")
+     sqlDf6.show(300)
   }
 
 }

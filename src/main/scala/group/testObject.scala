@@ -117,7 +117,7 @@ object testObject extends JFXApp {
 
         val button2 = new Button("Query 2")
         button2.onAction = (e: ActionEvent) => {
-          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          //sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
           sam.query2(spark)
           worldDeaths()
         }
@@ -127,6 +127,7 @@ object testObject extends JFXApp {
         val button3 = new Button("Query 3")
         button3.onAction = (e: ActionEvent) => {
           println("Query3")
+          query3Jacob()
         }
         button3.layoutX = 20
         button3.layoutY = 110
@@ -141,6 +142,7 @@ object testObject extends JFXApp {
         val button5 = new Button("Query 5")
         button5.onAction = (e: ActionEvent) => {
           println("Query5")
+          query5Mark()
         }
         button5.layoutX = 100
         button5.layoutY = 30
@@ -155,6 +157,8 @@ object testObject extends JFXApp {
         val button7 = new Button("Query 7")
         button7.onAction = (e: ActionEvent) => {
           println("Query7")
+          //sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          sam.mandeep(spark)
         }
         button7.layoutX = 100
         button7.layoutY = 110
@@ -168,7 +172,9 @@ object testObject extends JFXApp {
 
         val button9 = new Button("ML Scenario")
         button9.onAction = (e: ActionEvent) => {
-          println("ML Query")
+          //mlQuery()
+          mlMethod.mlFunction()
+          mlQuery()
         }
         button9.layoutX = 180
         button9.layoutY = 80
@@ -477,6 +483,195 @@ object testObject extends JFXApp {
     stage = new JFXApp.PrimaryStage {
       title = "Project 2"
       scene = new Scene(1250, 800) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query3Jacob(): Unit = {
+
+    val stream = new FileInputStream("input/Query3.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 900) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 870
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query4Jacob(): Unit = {
+
+    val stream = new FileInputStream("input/Query3.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 900) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 870
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query5Mark(): Unit = {
+
+    val stream = new FileInputStream("input/Query5.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 850) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query6Mark(): Unit = {
+
+    val stream = new FileInputStream("input/Query5.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 850) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query7Mandeep(): Unit = {
+
+    val stream = new FileInputStream("input/Query5.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 850) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def query8Mandeep(): Unit = {
+
+    val stream = new FileInputStream("input/Query5.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 850) {
+
+        val button = new Button("Back")
+        button.layoutX = 10
+        button.layoutY = 20
+        button.onAction = (e: ActionEvent) => {
+          menuStageTwo()
+        }
+
+        content = List(imageview, button)
+      }
+
+    }
+    stage.centerOnScreen()
+  }
+
+  def mlQuery(): Unit = {
+
+    val stream = new FileInputStream("input/ML.png")
+    val image = new Image(stream)
+    val imageview = new ImageView()
+    imageview.setImage(image)
+    imageview.preserveRatio
+
+
+    stage = new JFXApp.PrimaryStage {
+      title = "Project 2"
+      scene = new Scene(1250, 850) {
 
         val button = new Button("Back")
         button.layoutX = 10

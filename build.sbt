@@ -16,3 +16,6 @@ libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.8"
 libraryDependencies += "org.apache.spark" %% "spark-hive" % "2.4.8"
 
 libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.60-R9"
+
+// https://mvnrepository.com/artifact/org.apache.spark/spark-mllib
+libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.4.8"
