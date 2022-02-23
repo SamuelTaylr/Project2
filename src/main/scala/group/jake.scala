@@ -43,9 +43,9 @@ class jake {
 
     //Creating temporary view "Covid" from covidDF
 //    covidQueryDF.cache.createOrReplaceTempView("Covid")
-    covidQueryDF.write.format("parquet").mode("append").saveAsTable("Covid")
+//    covidQueryDF.write.format("parquet").mode("append").saveAsTable("Covid")
 //    monthsDF.cache.createOrReplaceTempView("Months_of_Year")
-    monthsDF.write.format("parquet").mode("append").saveAsTable("Months_of_Year")
+//    monthsDF.write.format("parquet").mode("append").saveAsTable("Months_of_Year")
 
     //Shows Data types of modifiedDF as an array
 //    println(covidDF.dtypes.mkString("Array(", ", ", ")"))
