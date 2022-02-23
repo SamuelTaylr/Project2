@@ -38,8 +38,8 @@ object main {
     //mark.avgCasesByMonth(covidDf, spark).show()
     //mark.avgCasesByQuarter(covidDf, spark).show()
 
-    val test = mark.queryToDataSet(covidDf, spark)
-    test.show()
+    //val test = mark.queryToDataSet(covidDf, spark)
+    //test.show()
 
   }
 }
