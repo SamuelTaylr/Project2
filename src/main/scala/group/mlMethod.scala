@@ -112,12 +112,14 @@ object mlMethod {
     val df = spark.sql("select * from test").show(10)
 
     val lp = predictions.select("label", "prediction")
+    val countTrain = trainData.count()
     val counttotal = predictions.count()
     val correct = lp.filter("label = prediction").count()
     val wrong = lp.filter("label != prediction").count()
     val ratioWrong = wrong.toDouble / counttotal.toDouble
     val ratioCorrect = correct.toDouble / counttotal.toDouble
 
+    println("Total Count of Rows In Training Data: " + countTrain)
     println("Total Count of Rows In Test Data: " + counttotal)
     println("Correct Predictions: " + correct)
     println("Incorrect Predictions: " + wrong)
@@ -140,15 +142,7 @@ object mlMethod {
 
     /*val model = new LogisticRegression().fit(df3)
     val predictions = model.transform(df3)*/
-    /**
-     *  Now we print it out.  Notice that the LR algorithm added a “prediction” column
-     *  to our dataframe.   The prediction in almost all cases will be the same as the label.  That is
-     * to be expected it there is a strong correlation between these values.  In other words
-     * if the chance of getting cancer was not closely related to these variables then LR
-     * was the wrong model to use.  The way to check that is to check the accuracy of the model.
-     *  You could use the BinaryClassificationEvaluator Spark ML function to do that.
-     * Adding that would be a good exercise for you, the reader.
-     */
+
     /*predictions.select ("features", "label", "prediction")
     predictions.createOrReplaceTempView("Testing")
     val tester = spark.sql("select label, probability, prediction from Testing where label = prediction ")

@@ -179,17 +179,10 @@ object testObject extends JFXApp {
         button9.layoutX = 180
         button9.layoutY = 80
 
-
         content = List(label, button, button2, button3, button4, button5, button6, button7, button8, button9 )
-
-
       }
       stage.centerOnScreen()
-
     }
-
-
-
   }
 
   def adminStage(): Unit = {
