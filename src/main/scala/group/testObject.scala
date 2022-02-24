@@ -159,6 +159,7 @@ object testObject extends JFXApp {
         val button7 = new Button("Query 7")
         button7.onAction = (e: ActionEvent) => {
           mandeep.Query3(spark)
+          query7Mandeep()
         }
         button7.layoutX = 100
         button7.layoutY = 110
@@ -166,6 +167,7 @@ object testObject extends JFXApp {
         val button8 = new Button("Query 8")
         button8.onAction = (e: ActionEvent) => {
           mandeep.Query4(spark)
+          query8Mandeep()
         }
         button8.layoutX = 100
         button8.layoutY = 150
@@ -601,7 +603,7 @@ object testObject extends JFXApp {
 
   def query7Mandeep(): Unit = {
 
-    val stream = new FileInputStream("input/Query5.png")
+    val stream = new FileInputStream("input/Mandeep1.png")
     val image = new Image(stream)
     val imageview = new ImageView()
     imageview.setImage(image)
@@ -628,7 +630,7 @@ object testObject extends JFXApp {
 
   def query8Mandeep(): Unit = {
 
-    val stream = new FileInputStream("input/Query5.png")
+    val stream = new FileInputStream("input/Mandeep2.png")
     val image = new Image(stream)
     val imageview = new ImageView()
     imageview.setImage(image)
