@@ -13,8 +13,12 @@ case class FeedbackRow(Id: Int, Obs_Date: DateType, State:String, Country:String
 
   // DataFrames can be converted to a Dataset by providing a class. Mapping will be done by name
   val path = "input/covid_19_data.csv"
-  val peopleDS = spark.read.json(path).as[FeedbackRow]
-  peopleDS.show()
+  val peopleDS = spark.read.parquet(path).as[FeedbackRow]
+  //peopleDS.show()
+  peopleDS.filter("Id > 30").show()
+   // .join(department, people("deptId") === department("id"))
+  //  .groupBy(department("name"), people("gender"))
+    //.agg(avg(people("salary")), max(people("age")))
 
 }
 

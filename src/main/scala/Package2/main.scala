@@ -21,10 +21,10 @@ object main {
 
   def main(args: Array[String]): Unit = {
 
-    /*val menu = new menu
-    menu.selectionMenu(spark)*/
+    val menu = new menu
+    menu.selectionMenu(spark)
 
-    val sam = new sam
+    val sam = new mandeep
     sam.dataLoader(spark)
 
 

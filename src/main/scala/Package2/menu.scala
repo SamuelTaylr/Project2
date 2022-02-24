@@ -2,9 +2,10 @@ package Package2
 
 import org.apache.spark.sql.SparkSession
 
-class menu {
- //var sam=new sam()
+class menu extends mandeep{
+ //var result=new mandeep()
   def selectionMenu(spark: SparkSession) : Unit = {
+    val mandeep =new mandeep()
 
     println(
       """
@@ -23,23 +24,27 @@ class menu {
 
     selection match {
       case 1 => {
-       //QUERY1()
+        mandeep.dataLoader(spark)
+        mandeep.Query1(spark)
         selectionMenu(spark)
       }
       case 2 => {
-       // sam.QUERY2()
+        mandeep.dataLoader(spark)
+        mandeep.Query2(spark)
         selectionMenu(spark)
       }
       case 3 => {
-      //  sam.QUERY3()
+        mandeep.dataLoader(spark)
+        mandeep.Query3(spark)
         selectionMenu(spark)
       }
       case 4 => {
-       // sam.QUERY4()
+        mandeep.dataLoader(spark)
+        mandeep.Query4(spark)
         selectionMenu(spark)
       }
       case 5 => {
-      //  sam.QUERY5()
+
         sys.exit(0)
       }
     }
