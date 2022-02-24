@@ -54,22 +54,15 @@ object mlMethod {
       trainInput("immunosuppression") > -1  && trainInput("leukemia") > -1 && trainInput("lymphoma") > -1 &&
       trainInput("hospital_death") > -1 )
 
-    /**  Now comes something more complicated.  Our dataframe has the column headings
-      *  we created with the schema.  But we need a column called “label” and one called
-    * “features” to plug into the LR algorithm.  So we use the VectorAssembler() to do that.
-      * Features is a Vector of doubles.  These are all the values like patient age, etc. that
-    * we extracted above.  The label indicated whether the patient has cancer.
-    */
+    // featureCols is an array defining which columns we want to use as features, basically which columns will be considered in the ML algorithm
+    // Then we pass that array to a VectorAssembler and it adds a feature column to the dataframe
     val featureCols = Array("heart_rate_apache","intubated_apache","map_apache","resprate_apache","temp_apache","ventilated_apache",
       "d1_diasbp_max","d1_diasbp_min", "d1_glucose_max","d1_glucose_min","d1_potassium_max","d1_potassium_min",
       "aids" , "cirrhosis" , "diabetes_mellitus" , "hepatic_failure" , "immunosuppression" , "leukemia" , "lymphoma")
     val assembler = new VectorAssembler().setInputCols(featureCols).setOutputCol("features")
     val df2 = assembler.transform(cleanDF)
-    /**
-     * Then we use the StringIndexer to take the column hospital_death and make that the label.
-     *  FNDX is the 1 or 0 indicator that shows whether the patient has cancer.
-     * Like the VectorAssembler it will add another column to the dataframe.
-     */
+
+    // The string indexer will add a Label column which duplicates the hospital_death column
     val labelIndexer = new StringIndexer().setInputCol("hospital_death").setOutputCol("label")
     val df3 = labelIndexer.fit(df2).transform(df2)
 
@@ -88,8 +81,7 @@ object mlMethod {
     val predictions2 = model.transform(df3)
     val dfnew = predictions.withColumn("prediction", col("prediction").cast("Double"))
     dfnew.createOrReplaceTempView("test")
-    val dfnew2 = predictions2.withColumn("prediction", col("prediction").cast("Double"))
-    dfnew2.createOrReplaceTempView("test2")
+
 
     /*val dfTest = spark.sql("select rawPrediction, label from test")
 

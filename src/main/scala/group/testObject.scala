@@ -98,6 +98,7 @@ object testObject extends JFXApp {
   def menuStageTwo(): Unit = {
 
     val sam = new sam
+    val jake = new jake
 
     stage = new JFXApp.PrimaryStage {
       title = "Project 2"
@@ -109,7 +110,7 @@ object testObject extends JFXApp {
 
         val button = new Button("Query 1")
         button.onAction = (e: ActionEvent) => {
-          sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
+          //sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
           submenuQuery1()
         }
         button.layoutX = 20
@@ -126,7 +127,7 @@ object testObject extends JFXApp {
 
         val button3 = new Button("Query 3")
         button3.onAction = (e: ActionEvent) => {
-          println("Query3")
+          jake.rollingMonthAnalysis(spark)
           query3Jacob()
         }
         button3.layoutX = 20
@@ -134,14 +135,14 @@ object testObject extends JFXApp {
 
         val button4 = new Button("Query 4")
         button4.onAction = (e: ActionEvent) => {
-          println("Query4")
+          query4Jacob()
         }
         button4.layoutX = 20
         button4.layoutY = 150
 
         val button5 = new Button("Query 5")
         button5.onAction = (e: ActionEvent) => {
-          println("Query5")
+          mark.queryToDataSet(mark.avgCasesByMonth(spark),spark)
           query5Mark()
         }
         button5.layoutX = 100
@@ -149,23 +150,22 @@ object testObject extends JFXApp {
 
         val button6 = new Button("Query 6")
         button6.onAction = (e: ActionEvent) => {
-          println("Query6")
+          mark.query2ToDataSet(mark.avgCasesByQuarter(spark),spark)
+          query6Mark()
         }
         button6.layoutX = 100
         button6.layoutY = 70
 
         val button7 = new Button("Query 7")
         button7.onAction = (e: ActionEvent) => {
-          println("Query7")
-          //sam.dataLoader(spark, dataFrameCreator.dataLoader(spark))
-          sam.mandeep(spark)
+          mandeep.Query3(spark)
         }
         button7.layoutX = 100
         button7.layoutY = 110
 
         val button8 = new Button("Query 8")
         button8.onAction = (e: ActionEvent) => {
-          println("Query8")
+          mandeep.Query4(spark)
         }
         button8.layoutX = 100
         button8.layoutY = 150
@@ -500,7 +500,7 @@ object testObject extends JFXApp {
 
   def query3Jacob(): Unit = {
 
-    val stream = new FileInputStream("input/Query3.png")
+    val stream = new FileInputStream("input/Query3-1.png")
     val image = new Image(stream)
     val imageview = new ImageView()
     imageview.setImage(image)
@@ -527,7 +527,7 @@ object testObject extends JFXApp {
 
   def query4Jacob(): Unit = {
 
-    val stream = new FileInputStream("input/Query3.png")
+    val stream = new FileInputStream("input/Query4.png")
     val image = new Image(stream)
     val imageview = new ImageView()
     imageview.setImage(image)
@@ -581,7 +581,7 @@ object testObject extends JFXApp {
 
   def query6Mark(): Unit = {
 
-    val stream = new FileInputStream("input/Query5.png")
+    val stream = new FileInputStream("input/Query6.png")
     val image = new Image(stream)
     val imageview = new ImageView()
     imageview.setImage(image)
