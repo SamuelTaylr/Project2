@@ -33,6 +33,9 @@ Our project uses a custom GUI built with ScalaFX.  Usernames and passwords store
 
 -Use of AWS RDS for storing username/passwords
 
+# Getting Started
+Repo can be cloned easily using the Github Desktop app or by using Intellij IDEA's create project from remote repository.  Because project was built in IntelliJ it includes multiple IDEA files which will prevent the project from working as is on other IDE's.
+
 
 # Usage
 Using the project will require creating/changing the default database used as it depends on AWS RDS for storing username/passwords.  However, this feature can be disabled to run the program without a database.  
