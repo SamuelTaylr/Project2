@@ -8,19 +8,31 @@ Our project uses a custom GUI built with ScalaFX.  Usernames and passwords store
 
 # Technologies Used
 -IntelliJ IDEA
+
 -SBT v. 1.57
+
 -Scala v. 2.11.12
+
 -Spark v. 2.4.8
+
 -ScalaFX v. 8.0.60-R9
+
 -Spark MLIB v. 2.4.8
+
 -Spark SQL v. 2.4.8
+
 -Spark Hive v. 2.4.8
+
 
 # Features
 -Interactive GUI 
+
 -Visualizations made in Zeppelin
+
 -Optimization using Parquet files and caching
+
 -Use of AWS RDS for storing username/passwords
+
 
 # Usage
 Using the project will require creating/changing the default database used as it depends on AWS RDS for storing username/passwords.  However, this feature can be disabled to run the program without a database.  
@@ -28,7 +40,9 @@ Using the project will require creating/changing the default database used as it
 
 # Contributors
 -Team Lead - Samuel Taylor
+
 -Team Members - Mark Coffer, Jacob Nottingham, Mandeep Atwal
+
 
 # License
 Unlicensed
