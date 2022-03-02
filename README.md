@@ -7,28 +7,28 @@ Project Requirements: Size of data should be 2k and above,and a minimum 3 tables
 Our project uses a custom GUI built with ScalaFX.  Usernames and passwords stored using AWS Relational Database Service.  Program has admin and user level access with different features available for each.  We used Covid 19 Data supplied by the WHO and compiled by John's Hopkins University.  Our goal was to create an efficient, optimized program that performs multiple queries on our data quickly.  We saved our tables in parquet format which made them queryable without having to create a temporary table each time the program ran, which significantly sped up our queries.  We used Zeppelin to create graphs and charts for each query, saved the screenshots in png format and loaded them using the GUI to provide an interesting way to view them.
 
 # Technologies Used
-IntelliJ IDEA
-SBT v. 1.57
-Scala v. 2.11.12
-Spark v. 2.4.8
-ScalaFX v. 8.0.60-R9
-Spark MLIB v. 2.4.8
-Spark SQL v. 2.4.8
-Spark Hive v. 2.4.8
+-IntelliJ IDEA
+-SBT v. 1.57
+-Scala v. 2.11.12
+-Spark v. 2.4.8
+-ScalaFX v. 8.0.60-R9
+-Spark MLIB v. 2.4.8
+-Spark SQL v. 2.4.8
+-Spark Hive v. 2.4.8
 
 # Features
-Interactive GUI 
-Visualizations made in Zeppelin
-Optimization using Parquet files and caching
-Use of AWS RDS for storing username/passwords
+-Interactive GUI 
+-Visualizations made in Zeppelin
+-Optimization using Parquet files and caching
+-Use of AWS RDS for storing username/passwords
 
 # Usage
 Using the project will require creating/changing the default database used as it depends on AWS RDS for storing username/passwords.  However, this feature can be disabled to run the program without a database.  
 
 
 # Contributors
-Team Lead - Samuel Taylor
-Team Members - Mark Coffer, Jacob Nottingham, Mandeep Atwal
+-Team Lead - Samuel Taylor
+-Team Members - Mark Coffer, Jacob Nottingham, Mandeep Atwal
 
 # License
 Unlicensed
