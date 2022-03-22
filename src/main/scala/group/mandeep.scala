@@ -6,7 +6,7 @@ object mandeep {
  def dataLoader(spark: SparkSession): Unit = {
  import spark.implicits._
 
-   /* //Creating initial DataFrame from csv file
+    //Creating initial DataFrame from csv file
     val dfTest = spark.read.option("header",true).option("inferSchema",true).format("csv").load(
       "input/covid_19_data.csv").toDF("Id", "Obs_Date","State","Country","Update","Confirmed",
       "Deaths","Recovered")
@@ -15,10 +15,9 @@ object mandeep {
 
     //Creating temporary view "Covid" from modifiedDF
     modifiedDF.createOrReplaceTempView("Covid")
-
     //modifiedDF.show(10)
     //Shows Data types of modifiedDF as an array
-    //println(modifiedDF.dtypes.mkString("Array(", ", ", ")"))*/
+    //println(modifiedDF.dtypes.mkString("Array(", ", ", ")"))
   }
 
   def Query1(spark:SparkSession):Unit= {
