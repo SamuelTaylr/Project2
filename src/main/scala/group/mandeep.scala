@@ -53,7 +53,20 @@ object mandeep {
       "from Covid WHERE Country='UK' group by month,year ORDER BY month ASC) ")
     sqlDf4.show(300)
   }
-  def Query5(): Unit ={
+ //convert DataFrame to DataSet
+ case class CovidDs(total_death: Double, AVG_Recovered: Double)
+
+  def Query5(spark: SparkSession): Unit = {
+    println("Convert The DtaFrame to DataSet")
+    //val covidData=spark.read.parquet("input/covid_19_data.csv").as[CovidDs]
+    val encoder = org.apache.spark.sql.Encoders.product[CovidDs]
+    //val encoder = org.apache.spark.sql.catalyst.encoders.ExpressionEncoder[CovidDs]
+    val DatasetConverter = Query3(spark).toDF("total_death", "AVG_Recovered")
+    val Convert = DatasetConverter.as(encoder)
+    Convert.show()
+
+  }
+  def Query6(): Unit ={
     println("exit")
   }
   /* More queries
